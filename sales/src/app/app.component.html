@@ -1,10 +1,10 @@
-<h2>
+<h1>
   {{title}}
-</h2>
+</h1>
 
 <div class="container">
   <div>
-    <button (onclick)="addSeller()">Bæta við Seljanda</button>
+    <button (click)="addSeller()">Bæta við Seljanda</button>
   </div>
   <div>
     <table class="table">
@@ -18,7 +18,7 @@
         <tr *ngFor="let s of sellers">
           <td>{{s.name}}</td>
           <td>{{s.category}}</td>
-          <td><button>Breyta notanda</button></td>
+          <td><button (click)="editSeller(s)">Breyta notanda</button></td>
         </tr>
       </tbody>
     </table>
@@ -27,6 +27,12 @@
 <div *ngIf="seller">
   <h2>{{seller.name}}</h2>
   <img src="{{seller.imagePath}}" alt="Image of the seller"/>
+</div>
+
+<div *ngFor="let s of sellers">
+  <app-seller-card [seller]="s">
+    
+  </app-seller-card>
 </div>
 
 <!--<ngb-alert type="info">

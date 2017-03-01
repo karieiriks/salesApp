@@ -21,26 +21,29 @@ export class AppComponent {
     var successHandler = (result) => {
       this.seller = result;
     };
-
     var errorHandler = (err) => {
       // TODO display toastr!
       console.log('Something failed');
     };
-
-    console.log("this.sellers");
-    this.service.getSellers().subscribe(result => {
-      this.sellers = result;
-    }/*,(err) => {
+    this.getSellers();
+    /*,(err) => {
       // TODO display toastr!
       console.log('Something failed');
-    }*/ );
+    }*/
     /*this.service.getSellers().subscribe(successHandler, errorHandler);*/
     /*this.service.getSellerById(2).subscribe(result => {
       this.seller = result;
     });*/
   }
 
+  getSellers() {
+    this.service.getSellers().subscribe(result => {
+      this.sellers = result;
+    });
+  }
+
   addSeller() {
+    console.log('inside addSeller()');
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.componentInstance.sellerName = 'Lúlli';
     modalInstance.result.then(obj => {
@@ -50,5 +53,9 @@ export class AppComponent {
       console.log('When presses Cancel');
       console.log(err);
     });
+  }
+
+  editSeller(s: Seller) {
+    
   }
 }

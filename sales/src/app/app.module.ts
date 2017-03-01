@@ -5,12 +5,14 @@ import { HttpModule } from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { AppComponent } from './app.component';
-import { SellersService } from './sellers.service'
+import { SellersService } from './sellers.service';
+import { SellerCardComponent } from './seller-card/seller-card.component'
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SellerCardComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,7 @@
+<div *ngIf="seller">
+  <h3>{{seller.name}}</h3>
+  <i>{{seller.category}}</i>
+  <img [src]="seller.imagePath" style="width: 80px"/>
+
+  <button class="btn-primary" (click)=OnEdit()>Breyta seljanda</button>
+</div>
