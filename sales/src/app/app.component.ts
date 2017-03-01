@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SellersService, Seller } from './sellers.service'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +14,8 @@ export class AppComponent {
   private sellers: Seller[];
   private seller: Seller;
 
-  constructor(private service: SellersService){}
+  constructor(private modalService: NgbModal, 
+              private service: SellersService){}
 
   ngOnInit() {
     var successHandler = (result) => {
@@ -35,5 +38,17 @@ export class AppComponent {
     /*this.service.getSellerById(2).subscribe(result => {
       this.seller = result;
     });*/
+  }
+
+  addSeller() {
+    const modalInstance = this.modalService.open(SellerDialogComponent);
+    modalInstance.componentInstance.sellerName = 'Lúlli';
+    modalInstance.result.then(obj => {
+      console.log('When pressed OK');
+      console.log(obj);
+    }).catch(err => {
+      console.log('When presses Cancel');
+      console.log(err);
+    });
   }
 }
