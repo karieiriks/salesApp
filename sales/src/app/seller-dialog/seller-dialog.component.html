@@ -1,3 +1,23 @@
-<p>
-  seller-dialog works!
-</p>
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="onCancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <input [(ngModel)]="sellerName"/>
+</div>
+
+<div class="modal-body">
+  <input [(ngModel)]="category"/>
+</div>
+
+<div class="modal-body">
+  <input [(ngModel)]="imgPath"/>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+  <button type="button" class="btn btn-success" (click)="onSave()">Save</button>
+</div>
