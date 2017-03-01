@@ -2,18 +2,32 @@
   {{title}}
 </h2>
 
-
-<ul>
-  <li *ngFor="let s of sellers">
-    {{s.name}}
-  </li>
-</ul>
-
+<div class="container">
+  <div>
+    <button (onclick)="addUser()">Bæta við</button>
+  </div>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nafn seljanda</th>
+          <th>Flokkur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of sellers">
+          <td>{{s.name}}</td>
+          <td>{{s.category}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>  
+</div>
 <div *ngIf="seller">
   <h2>{{seller.name}}</h2>
   <img src="{{seller.imagePath}}" alt="Image of the seller"/>
 </div>
 
-<ngb-alert type="info">
+<!--<ngb-alert type="info">
   Test 1 2 3 !
-</ngb-alert>
+</ngb-alert>-->

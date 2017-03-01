@@ -7,7 +7,7 @@ import { SellersService, Seller } from './sellers.service'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!!!!';
+  title = 'Söluaðilar';
 
   private sellers: Seller[];
   private seller: Seller;
@@ -32,8 +32,8 @@ export class AppComponent {
       console.log('Something failed');
     }*/ );
     /*this.service.getSellers().subscribe(successHandler, errorHandler);*/
-    this.service.getSellerById(2).subscribe(result => {
+    /*this.service.getSellerById(2).subscribe(result => {
       this.seller = result;
-    });
+    });*/
   }
 }
