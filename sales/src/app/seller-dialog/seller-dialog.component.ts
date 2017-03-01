@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-seller-dialog',
@@ -8,10 +10,29 @@ import { Component, OnInit } from '@angular/core';
 export class SellerDialogComponent implements OnInit {
 
   sellerName: string;
-
-  constructor() { }
+  category: string;
+  imgPath: string;
+  
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
+
+  onSave() {
+    /*
+    let newID = this.appComponent.sellers.length + 1;
+    
+    this.activeModal.close({
+      id: newID,
+      name: this.sellerName,
+      category: this.category,
+      imgPath: this.imgPath
+    });
+    */
+  }
+
+  onCancel() {
+    this.activeModal.dismiss();
+  } 
 
 }

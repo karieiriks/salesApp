@@ -6,11 +6,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 
 import { AppComponent } from './app.component';
 import { SellersService } from './sellers.service'
+import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SellerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +21,8 @@ import { SellersService } from './sellers.service'
     NgbModule.forRoot()
   ],
   providers: [SellersService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SellerDialogComponent]
 })
 export class AppModule { }
 

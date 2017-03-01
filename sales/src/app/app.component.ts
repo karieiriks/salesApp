@@ -11,8 +11,8 @@ import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
 export class AppComponent {
   title = 'Söluaðilar';
 
-  private sellers: Seller[];
-  private seller: Seller;
+  sellers: Seller[];
+  seller: Seller;
 
   constructor(private modalService: NgbModal, 
               private service: SellersService){}
@@ -41,6 +41,7 @@ export class AppComponent {
   }
 
   addSeller() {
+    console.log('addSeller() clicked');
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.componentInstance.sellerName = 'Lúlli';
     modalInstance.result.then(obj => {
