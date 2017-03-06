@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http'
+import { Http, Headers } from '@angular/http'
 import { Observable} from 'rxjs/Observable'
 import 'rxjs/rx'
 
@@ -28,6 +28,25 @@ export class SellersService {
     .map(response => {
       return <Seller> response.json();
     });
+  }
+
+  postSeller(sellerInfo: any) {
+    console.log('Inside service :', sellerInfo);
+    console.log('Sending POST request for a new seller');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const obj = JSON.stringify(sellerInfo);
+    return this.http.post('http://localhost:5000/api/sellers',obj, {headers: headers}).toPromise();
+  }
+
+  putSeller(sellerUpdatedInfo: any) {
+    console.log('Inside service :', sellerUpdatedInfo);
+    console.log('Sending PUT request for a new seller');
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const id = sellerUpdatedInfo.id;
+    const obj = JSON.stringify(sellerUpdatedInfo);
+    return this.http.put(`http://localhost:5000/api/sellers/${id}`,obj, {headers: headers}).toPromise();
   }
 
 }

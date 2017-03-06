@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let s of sellers">
-          <td>{{s.name}}</td>
+          <td><a href="www.mbl.is"> {{s.name}}</a></td>
           <td>{{s.category}}</td>
           <td><button (click)="editSeller(s)">Breyta notanda</button></td>
         </tr>
@@ -24,6 +24,8 @@
     </table>
   </div>  
 </div>
+<template ngbModalContainer></template>
+<!--
 <div *ngIf="seller">
   <h2>{{seller.name}}</h2>
   <img src="{{seller.imagePath}}" alt="Image of the seller"/>
@@ -34,8 +36,7 @@
     
   </app-seller-card>
 </div>
-<template ngbModalContainer></template>
-
+-->
 <!--<ngb-alert type="info">
   Test 1 2 3 !
 </ngb-alert>-->

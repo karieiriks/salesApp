@@ -46,6 +46,8 @@ export class AppComponent {
     console.log('addSeller() clicked');
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.componentInstance.sellerName = 'Lúlli';
+    modalInstance.componentInstance.category = 'Flokkur';
+    modalInstance.componentInstance.imgPath = 'Mynd';
     modalInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
@@ -56,6 +58,18 @@ export class AppComponent {
   }
 
   editSeller(s: Seller) {
-    
+    console.log(s);
+    const modelInstance = this.modalService.open(SellerDialogComponent);
+    modelInstance.componentInstance.id = s.id;
+    modelInstance.componentInstance.sellerName = s.name;
+    modelInstance.componentInstance.category = s.category;
+    modelInstance.componentInstance.imgPath = s.imagePath;
+    modelInstance.result.then(obj => {
+      console.log('When pressed OK');
+      console.log(obj);
+    }).catch(err => {
+      console.log('When presses Cancel');
+      console.log(err);
+    });
   }
 }
