@@ -1,7 +1,16 @@
-<div *ngIf="seller">
+<!--<div *ngIf="seller">
   <h3>{{seller.name}}</h3>
   <i>{{seller.category}}</i>
   <img [src]="seller.imagePath" style="width: 80px"/>
 
   <button class="btn-primary" (click)=OnEdit()>Breyta seljanda</button>
+</div>-->
+
+<h1>Seller component card</h1>
+<h2>{{sellerId}}</h2>
+<div *ngIf="seller">
+<h3>{{seller.id}}</h3>
+<h3>{{seller.name}}</h3>
+<h3>{{seller.category}}</h3>
+<h3>{{seller.imagePath}}</h3>
 </div>

@@ -1,21 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { SellersService, Seller } from './sellers.service'
+import { SellersService, Seller } from '../sellers.service'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
+import { SellerDialogComponent } from '../seller-dialog/seller-dialog.component';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-sellers',
+  templateUrl: './sellers.component.html',
+  styleUrls: ['./sellers.component.css']
 })
-export class AppComponent {
-  title = 'Sölusíðan sveittir bændur';
-  /*
-  sellers: Seller[];
+export class SellersComponent implements OnInit {
+sellers: Seller[];
   seller: Seller;
-  */
-  constructor(/*private modalService: NgbModal, 
-              private service: SellersService*/){}
+
+  constructor(private modalService: NgbModal, 
+              private service: SellersService){}
 
   ngOnInit() {
     /*var successHandler = (result) => {
@@ -25,7 +23,7 @@ export class AppComponent {
       // TODO display toastr!
       console.log('Something failed');
     };*/
-    //this.getSellers();
+    this.getSellers();
     /*,(err) => {
       // TODO display toastr!
       console.log('Something failed');
@@ -35,7 +33,7 @@ export class AppComponent {
       this.seller = result;
     });*/
   }
-/*
+
   getSellers() {
     this.service.getSellers().subscribe(result => {
       this.sellers = result;
@@ -71,5 +69,5 @@ export class AppComponent {
       console.log('When presses Cancel');
       console.log(err);
     });
-  }*/
+  }
 }

@@ -27,7 +27,6 @@ export class SellerDialogComponent implements OnInit {
       category: this.category,
       imagePath: this.imgPath
     };
-    console.log('Seller obj :', sellerObj);
     this.sellerService.postSeller(sellerObj);
     this.activeModal.close();
     /*

@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http'
-import { Observable} from 'rxjs/Observable'
-import 'rxjs/rx'
+import { Http, Headers } from '@angular/http';
+import { Observable} from 'rxjs/Observable';
+import 'rxjs/rx';
 
 export interface Seller {
   id: number;
   name: string;
   category: string;
   imagePath: string;
+}
+
+export interface Product {
+    id: number,
+    name: string,
+    price: number,
+    quantitySold: number,
+    quantityInStock: number,
+    imagePath: string
 }
 
 @Injectable()
@@ -23,7 +32,7 @@ export class SellersService {
     });
   }
 
-  getSellerById(id: number) : Observable<Seller> {
+  getSellerById(id: number): Observable<Seller> {
     return this.http.get(`http://localhost:5000/api/sellers/${id}`)
     .map(response => {
       return <Seller> response.json();
@@ -36,7 +45,7 @@ export class SellersService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const obj = JSON.stringify(sellerInfo);
-    return this.http.post('http://localhost:5000/api/sellers',obj, {headers: headers}).toPromise();
+    this.http.post('http://localhost:5000/api/sellers',obj, {headers: headers}).toPromise();
   }
 
   putSeller(sellerUpdatedInfo: any) {
@@ -47,6 +56,14 @@ export class SellersService {
     const id = sellerUpdatedInfo.id;
     const obj = JSON.stringify(sellerUpdatedInfo);
     return this.http.put(`http://localhost:5000/api/sellers/${id}`,obj, {headers: headers}).toPromise();
+  }
+
+  getSellersProduct(id: number): Observable<Product[]> {
+    console.log('ID of user :', id);
+    return this.http.get(`http://localhost:5000/api/sellers/${id}/products`)
+    .map(response => {
+      return <Product[]> response.json();
+    });
   }
 
 }
