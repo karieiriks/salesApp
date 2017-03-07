@@ -1,23 +1,26 @@
-<div class="container">
-  <div>
-    <button (click)="addSeller()">Bæta við Seljanda</button>
-  </div>
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nafn seljanda</th>
-          <th>Flokkur</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let s of sellers">
-          <td><a href="sellers/{{s.id}}"> {{s.name}}</a></td>
-          <td>{{s.category}}</td>
-          <td><button (click)="editSeller(s)">Breyta notanda</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>  
+<h4>Söluaðilar</h4>
+<div class="stick-to-right">
+  <button class="btn btn-success btn-sm" (click)="addSeller()">Bæta við Seljanda</button>
 </div>
+<div class="table-div">
+  <table class="table">
+    <thead class="thead-default">
+      <tr>
+        <th scope="row">ID</th>
+        <th>Nafn Seljanda</th>
+        <th>Flokkur</th>
+        <th align="right"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let s of sellers">
+        <td>{{s.id}}</td>
+        <td><a href="sellers/{{s.id}}"> {{s.name}}</a></td>
+        <td>{{s.category}}</td>
+        <td align="right"><button class="btn btn-outline-warning btn-sm" (click)="editSeller(s)">Breyta notanda</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>  
+
 <template ngbModalContainer></template>

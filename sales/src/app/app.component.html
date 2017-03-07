@@ -1,43 +1,17 @@
-<h1>
-  {{title}}
-</h1>
-<!--
-<div class="container">
-  <div>
-    <button (click)="addSeller()">Bæta við Seljanda</button>
+
+<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+  <div class="container">  
+  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <a class="navbar-brand" href="#">{{title}}</a>
   </div>
-  <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nafn seljanda</th>
-          <th>Flokkur</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let s of sellers">
-          <td><a href="sellers/{{s.id}}"> {{s.name}}</a></td>
-          <td>{{s.category}}</td>
-          <td><button (click)="editSeller(s)">Breyta notanda</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>  
-</div>
-<template ngbModalContainer></template>-->
-<router-outlet></router-outlet>
-<!--
-<div *ngIf="seller">
-  <h2>{{seller.name}}</h2>
-  <img src="{{seller.imagePath}}" alt="Image of the seller"/>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
 </div>
 
-<div *ngFor="let s of sellers">
-  <app-seller-card [seller]="s">
-    
-  </app-seller-card>
-</div>
--->
 <!--<ngb-alert type="info">
   Test 1 2 3 !
 </ngb-alert>-->

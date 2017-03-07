@@ -46,6 +46,7 @@ sellers: Seller[];
     modalInstance.componentInstance.sellerName = 'Lúlli';
     modalInstance.componentInstance.category = 'Flokkur';
     modalInstance.componentInstance.imgPath = 'Mynd';
+    
     modalInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log('Dialog object :', obj);
@@ -62,6 +63,7 @@ sellers: Seller[];
     modelInstance.componentInstance.sellerName = s.name;
     modelInstance.componentInstance.category = s.category;
     modelInstance.componentInstance.imgPath = s.imagePath;
+
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
