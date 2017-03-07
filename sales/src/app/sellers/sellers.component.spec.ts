@@ -3,26 +3,26 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SellerDialogComponent } from './seller-dialog.component';
+import { SellersComponent } from './sellers.component';
 
-describe('SellerDialogComponent', () => {
-  let component: SellerDialogComponent;
-  let fixture: ComponentFixture<SellerDialogComponent>;
+describe('SellersComponent', () => {
+  let component: SellersComponent;
+  let fixture: ComponentFixture<SellersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellerDialogComponent ]
+      declarations: [ SellersComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SellerDialogComponent);
+    fixture = TestBed.createComponent(SellersComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });
