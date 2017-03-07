@@ -28,7 +28,7 @@ export class SellerDialogComponent implements OnInit {
     };
     this.sellerService.postSeller(sellerObj);
     this.activeModal.close();
-<<<<<<< HEAD
+
     /*
     let newID = sellers.length + 1;
     
@@ -39,9 +39,6 @@ export class SellerDialogComponent implements OnInit {
       imgPath: this.imgPath
     });
     */
-    
-=======
->>>>>>> 72c8491900b99363bd40ae43cb6c1696cdeac161
   }
 
   onEdit() {

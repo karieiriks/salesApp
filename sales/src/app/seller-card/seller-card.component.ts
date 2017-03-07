@@ -55,11 +55,13 @@ export class SellerCardComponent implements OnInit {
     });
   }
 
-  editProduct(product: any) {
-    console.log(product);
+  onEditProduct(product: Product) {
+    console.log('product: ',product);
     const modelInstance = this.modalService.open(ProductDialogComponent);
     modelInstance.componentInstance.id = product.id;
     modelInstance.componentInstance.name = product.name;
+    modelInstance.componentInstance.quantityInStock = product.quantityInStock;
+    modelInstance.componentInstance.quantitySold = product.quantitySold;
     modelInstance.componentInstance.price = product.price;
     modelInstance.componentInstance.imagePath = product.imagePath;
 

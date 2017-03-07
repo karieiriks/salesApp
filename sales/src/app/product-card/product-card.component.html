@@ -6,7 +6,9 @@
     <div class="caption">
       <div>{{product.name}}</div>
       <div>{{product.price}} kr.-</div>
-      <p><a href="#" class="btn btn-warning btn-sm" role="button">Breyta</a>
+      <button class="btn btn-warning btn-sm" (click)="onEditProduct()">Breyta vöru</button>
     </div>
   </div>
 </div>
+
+<template ngbModalContainer></template>

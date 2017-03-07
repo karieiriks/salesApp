@@ -31,7 +31,8 @@
 <div class="tab-content">
   <div class="row">
     <div *ngFor="let p of products"  class="col-xs-6 col-md-3">
-      <app-product-card [product]="p">
+      <app-product-card [product]="p"
+                        (productUpdated)="onEditProduct($event)">
 
       </app-product-card>
     </div>
@@ -39,7 +40,7 @@
 </div>
 </div>
 
-
+<template ngbModalContainer></template>
 <!--
 <div *ngIf="seller">
   <h3>{{seller.id}}</h3>
@@ -64,4 +65,4 @@
     </table>
 </div>
 -->
-<template ngbModalContainer></template>
+

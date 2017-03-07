@@ -47,7 +47,7 @@ export class ProductDialogComponent implements OnInit {
       imagePath: this.imagePath
     };
     // TODO create putProduct in sellerService
-    //console.log('Seller obj :', productObj);
+    console.log('Seller obj :', productObj);
     //this.sellerService.putSeller(productObj);
     this.activeModal.close();
   }

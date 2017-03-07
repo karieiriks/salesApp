@@ -58,6 +58,10 @@ export class SellersService {
     return this.http.put(`http://localhost:5000/api/sellers/${id}`, obj, {headers: headers}).toPromise();
   }
 
+  putProduct() {
+    
+  }
+
   getSellersProduct(id: number): Observable<Product[]> {
     console.log('ID of user :', id);
     return this.http.get(`http://localhost:5000/api/sellers/${id}/products`)
