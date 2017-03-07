@@ -23,23 +23,5 @@ export class ProductCardComponent implements OnInit {
     console.log('this.product: ', this.product);
     this.productUpdated.emit(this.product);
   }
-/*
-    editSeller(s: Seller) {
-    console.log(s);
-    const modelInstance = this.modalService.open(SellerDialogComponent);
-    modelInstance.componentInstance.id = s.id;
-    modelInstance.componentInstance.sellerName = s.name;
-    modelInstance.componentInstance.category = s.category;
-    modelInstance.componentInstance.imgPath = s.imagePath;
 
-    modelInstance.result.then(obj => {
-      console.log('When pressed OK');
-      console.log(obj);
-    }).catch(err => {
-      console.log('When presses Cancel');
-      console.log(err);
-    });
-  }
-}
-*/
 }
