@@ -9,8 +9,24 @@
 <h1>Seller component card</h1>
 <h2>{{sellerId}}</h2>
 <div *ngIf="seller">
-<h3>{{seller.id}}</h3>
-<h3>{{seller.name}}</h3>
-<h3>{{seller.category}}</h3>
-<h3>{{seller.imagePath}}</h3>
+  <h3>{{seller.id}}</h3>
+  <h3>{{seller.name}}</h3>
+  <h3>{{seller.category}}</h3>
+  <img [src]="seller.imagePath" style="width: 80px"/>
+</div>
+
+<div *ngIf="sellerProducts">
+  <table class="table">
+      <tbody>
+        <tr *ngFor="let sp of sellerProducts">
+          <td>{{sp.id}}</td>
+          <td>{{sp.name}}</td>
+          <td>{{sp.price}}</td>
+          <td>{{sp.quantitySold}}</td>
+          <td>{{sp.quantityInStock}}</td>
+          <td><img [src]="sp.imagePath" alt="Photo of item" style="width: 80px"/></td>
+          <td><button (click)="editProduct(sp)">Breyta vöru</button></td>
+        </tr>
+      </tbody>
+    </table>
 </div>
