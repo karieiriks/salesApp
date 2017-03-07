@@ -11,6 +11,7 @@ import { SellerCardComponent } from './seller-card/seller-card.component';
 import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
 import { SellersComponent } from './sellers/sellers.component';
 import { ProductDialogComponent } from './product-dialog/product-dialog.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProductDialogComponent } from './product-dialog/product-dialog.componen
     SellerCardComponent,
     SellerDialogComponent,
     SellersComponent,
-    ProductDialogComponent
+    ProductDialogComponent,
+    ProductCardComponent
   ],
   imports: [
     BrowserModule,
