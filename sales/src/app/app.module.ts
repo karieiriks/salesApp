@@ -7,9 +7,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { SellersService } from './sellers.service';
-import { SellerCardComponent } from './seller-card/seller-card.component'
+import { SellerCardComponent } from './seller-card/seller-card.component';
 import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
 import { SellersComponent } from './sellers/sellers.component';
+import { ProductDialogComponent } from './product-dialog/product-dialog.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SellersComponent } from './sellers/sellers.component';
     AppComponent,
     SellerCardComponent,
     SellerDialogComponent,
-    SellersComponent
+    SellersComponent,
+    ProductDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { SellersComponent } from './sellers/sellers.component';
   */
   providers: [SellersService],
   bootstrap: [AppComponent],
-  entryComponents: [SellerDialogComponent]
+  entryComponents: [SellerDialogComponent, ProductDialogComponent]
 })
 export class AppModule { }
 

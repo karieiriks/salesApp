@@ -11,12 +11,12 @@ export interface Seller {
 }
 
 export interface Product {
-    id: number,
-    name: string,
-    price: number,
-    quantitySold: number,
-    quantityInStock: number,
-    imagePath: string
+    id: number;
+    name: string;
+    price: number;
+    quantitySold: number;
+    quantityInStock: number;
+    imagePath: string;
 }
 
 @Injectable()
@@ -27,7 +27,7 @@ export class SellersService {
   getSellers(): Observable<Seller[]> {
     console.log('Calling getSellers');
     return this.http.get('http://localhost:5000/api/sellers')
-    .map(response =>{
+    .map(response => {
       return <Seller[]> response.json();
     });
   }
@@ -42,20 +42,20 @@ export class SellersService {
   postSeller(sellerInfo: any) {
     console.log('Inside service :', sellerInfo);
     console.log('Sending POST request for a new seller');
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const obj = JSON.stringify(sellerInfo);
-    this.http.post('http://localhost:5000/api/sellers',obj, {headers: headers}).toPromise();
+    this.http.post('http://localhost:5000/api/sellers', obj, {headers: headers}).toPromise();
   }
 
   putSeller(sellerUpdatedInfo: any) {
     console.log('Inside service :', sellerUpdatedInfo);
     console.log('Sending PUT request for a new seller');
-    let headers = new Headers();
+    const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const id = sellerUpdatedInfo.id;
     const obj = JSON.stringify(sellerUpdatedInfo);
-    return this.http.put(`http://localhost:5000/api/sellers/${id}`,obj, {headers: headers}).toPromise();
+    return this.http.put(`http://localhost:5000/api/sellers/${id}`, obj, {headers: headers}).toPromise();
   }
 
   getSellersProduct(id: number): Observable<Product[]> {

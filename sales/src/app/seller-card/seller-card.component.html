@@ -16,6 +16,9 @@
 </div>
 
 <div *ngIf="sellerProducts">
+  <div>
+    <button (click)="addProduct()">Bæta við vöru</button>
+  </div>
   <table class="table">
       <tbody>
         <tr *ngFor="let sp of sellerProducts">
@@ -30,3 +33,4 @@
       </tbody>
     </table>
 </div>
+<template ngbModalContainer></template>

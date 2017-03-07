@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { AppComponent } from '../app.component';
 import { SellersService } from '../sellers.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class SellerDialogComponent implements OnInit {
   sellerName: string;
   category: string;
   imgPath: string;
-  
+
   constructor(public activeModal: NgbActiveModal, private sellerService: SellersService) { }
 
   ngOnInit() {
@@ -29,16 +28,6 @@ export class SellerDialogComponent implements OnInit {
     };
     this.sellerService.postSeller(sellerObj);
     this.activeModal.close();
-    /*
-    let newID = this.appComponent.sellers.length + 1;
-    
-    this.activeModal.close({
-      id: newID,
-      name: this.sellerName,
-      category: this.category,
-      imgPath: this.imgPath
-    });
-    */
   }
 
   onEdit() {
@@ -56,6 +45,6 @@ export class SellerDialogComponent implements OnInit {
 
   onCancel() {
     this.activeModal.dismiss();
-  } 
+  }
 
 }
