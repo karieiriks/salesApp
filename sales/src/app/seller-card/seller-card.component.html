@@ -1,24 +1,33 @@
-<!--<div *ngIf="seller">
-  <h3>{{seller.name}}</h3>
-  <i>{{seller.category}}</i>
-  <img [src]="seller.imagePath" style="width: 80px"/>
 
-  <button class="btn-primary" (click)=OnEdit()>Breyta seljanda</button>
-</div>-->
 
-<h1>Seller component card</h1>
-<h2>{{sellerId}}</h2>
+<div *ngIf="seller" class="row">
+<div class="seller-div">
+  <div class="col-8">
+    <div class="media">
+      <img [src]="seller.imagePath" style="width: 200px" class="d-flex align-self-center mr-3" src="..." alt="Generic placeholder image">
+      <div class="media-body">
+        <h4>{{seller.name}}</h4>
+        <h4>{{seller.category}}</h4>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="col-4">
+    <div class="stick-to-right">
+      <button class="btn btn-success btn-sm" (click)="addProduct()">Bæta við vöru</button>
+    </div>
+  </div>
+</div>
+
+<!--
 <div *ngIf="seller">
   <h3>{{seller.id}}</h3>
   <h3>{{seller.name}}</h3>
   <h3>{{seller.category}}</h3>
   <img [src]="seller.imagePath" style="width: 80px"/>
 </div>
-
+-->
 <div *ngIf="sellerProducts">
-  <div>
-    <button (click)="addProduct()">Bæta við vöru</button>
-  </div>
   <table class="table">
       <tbody>
         <tr *ngFor="let sp of sellerProducts">
@@ -34,3 +43,12 @@
     </table>
 </div>
 <template ngbModalContainer></template>
+
+<div class="media">
+  <img class="d-flex align-self-center mr-3" src="..." alt="Generic placeholder image">
+  <div class="media-body">
+    <h5 class="mt-0">Center-aligned media</h5>
+    <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
+    <p class="mb-0">Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+  </div>
+</div>
