@@ -20,7 +20,7 @@ export class SellerDialogComponent implements OnInit {
 
   onSave() {
     /*
-    let newID = this.appComponent.sellers.length + 1;
+    let newID = sellers.length + 1;
     
     this.activeModal.close({
       id: newID,
@@ -29,6 +29,7 @@ export class SellerDialogComponent implements OnInit {
       imgPath: this.imgPath
     });
     */
+    
   }
 
   onCancel() {

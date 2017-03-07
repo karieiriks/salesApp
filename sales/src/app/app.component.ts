@@ -48,7 +48,7 @@ export class AppComponent {
       console.log('When pressed OK');
       console.log(obj);
     }).catch(err => {
-      console.log('When presses Cancel');
+      console.log('When pressed Cancel');
       console.log(err);
     });
   }
