@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SellersService, Seller } from '../sellers.service'
+import { SellersService, Seller } from '../sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDialogComponent } from '../seller-dialog/seller-dialog.component';
 
@@ -9,11 +9,11 @@ import { SellerDialogComponent } from '../seller-dialog/seller-dialog.component'
   styleUrls: ['./sellers.component.css']
 })
 export class SellersComponent implements OnInit {
-sellers: Seller[];
+  sellers: Seller[];
   seller: Seller;
 
-  constructor(private modalService: NgbModal, 
-              private service: SellersService){}
+  constructor(private modalService: NgbModal,
+              private service: SellersService) {}
 
   ngOnInit() {
     /*var successHandler = (result) => {

@@ -1,17 +1,17 @@
 <div class="modal-header">
-  <h4 class="modal-title">Create new seller</h4>
+  <h4 class="modal-title">Create new product</h4>
   <button type="button" class="close" aria-label="Close" (click)="onCancel()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
 
 <div class="modal-body">
-  <label for="sellerName">Name</label>
-  <input [(ngModel)]="sellerName"/>
+  <label for="name">Name</label>
+  <input [(ngModel)]="name"/>
 </div>
 
 <div class="modal-body">
-  <label for="category">Category</label>
+  <label for="price">Price</label>
   <!--<select>  
     <option value="Fatnaður">Fatnaður</option>
     <option value="Bílar">Bílar</option>
@@ -21,13 +21,13 @@
     <option value="Íþróttavörur">Íþróttavörur</option>
     <option value="Tölvuvörur">Tölvuvörur</option>
   </select>-->
-  <input [(ngModel)]="category"/>
+  <input [(ngModel)]="price"/>
   <!--<multiselect ng-model="selection" options="options" show-select-all="true" show-unselect-all="true"></multiselect>-->
 </div>
 
 <div class="modal-body">
-  <label for="imgPath">Image path</label>
-  <input [(ngModel)]="imgPath"/>
+  <label for="imagePath">Image path</label>
+  <input [(ngModel)]="imagePath"/>
 </div>
 
 <div class="modal-footer">

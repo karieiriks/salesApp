@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SellersService, Seller } from './sellers.service'
+import { SellersService, Seller } from './sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
 
@@ -10,38 +10,10 @@ import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
 })
 export class AppComponent {
   title = 'Sölusíðan sveittir bændur';
-  /*
-  sellers: Seller[];
-  seller: Seller;
-  */
-  constructor(/*private modalService: NgbModal, 
-              private service: SellersService*/){}
 
-  ngOnInit() {
-    /*var successHandler = (result) => {
-      this.seller = result;
-    };
-    var errorHandler = (err) => {
-      // TODO display toastr!
-      console.log('Something failed');
-    };*/
-    //this.getSellers();
-    /*,(err) => {
-      // TODO display toastr!
-      console.log('Something failed');
-    }*/
-    /*this.service.getSellers().subscribe(successHandler, errorHandler);*/
-    /*this.service.getSellerById(2).subscribe(result => {
-      this.seller = result;
-    });*/
-  }
-/*
-  getSellers() {
-    this.service.getSellers().subscribe(result => {
-      this.sellers = result;
-    });
-  }
+  constructor() {}
 
+<<<<<<< HEAD
   addSeller() {
     console.log('addSeller() clicked');
     const modalInstance = this.modalService.open(SellerDialogComponent);
@@ -72,4 +44,7 @@ export class AppComponent {
       console.log(err);
     });
   }*/
+=======
+  ngOnInit() {}
+>>>>>>> 72c8491900b99363bd40ae43cb6c1696cdeac161
 }

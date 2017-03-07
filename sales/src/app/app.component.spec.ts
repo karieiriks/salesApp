@@ -4,7 +4,7 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { SellersService, Seller } from './sellers.service';
 import { Observable } from 'rxjs/Observable';
-import { FormsModule } from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -13,13 +13,13 @@ describe('AppComponent', () => {
 
   class SellersServiceMock {
     sellers: Seller[];
-    getSellers() : Observable<Seller[]> {
+    getSellers(): Observable<Seller[]> {
       return Observable.of(this.sellers);
     }
   }
 
   let mockService = new SellersServiceMock();
-  
+
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
