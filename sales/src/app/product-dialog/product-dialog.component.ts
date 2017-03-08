@@ -51,8 +51,8 @@ export class ProductDialogComponent implements OnInit {
       quantityInStock: this.quantityInStock,
       imagePath: this.imagePath
     };
-    // TODO create putProduct in sellerService
     
+    this.sellerService.putProduct(productObj, this.sellerID);
     this.activeModal.close();
   }
 

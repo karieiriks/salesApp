@@ -77,12 +77,14 @@ export class SellersService {
   }
 
   putProduct(updatedProduct: any, sellerID: number) {
-    /*
+    console.log('Inside service putProduct() :', updatedProduct);
+    console.log('Inside service sellerID :', sellerID);
+    console.log('Sending PUT request for an existing product');
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const id = updatedProduct.id;
     const obj = JSON.stringify(updatedProduct);
-    */
+    return this.http.put(`http://localhost:5000/api/sellers/${sellerID}/products/${id}`, obj, {headers: headers}).toPromise();
   }
 
 
