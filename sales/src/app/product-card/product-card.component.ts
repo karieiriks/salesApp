@@ -23,7 +23,4 @@ export class ProductCardComponent implements OnInit {
     console.log('this.product: ', this.product);
     this.productUpdated.emit(this.product);
   }
-
-  
-
 }

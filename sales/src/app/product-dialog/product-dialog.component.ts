@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellersService } from '../sellers.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-dialog',
@@ -19,7 +18,6 @@ export class ProductDialogComponent implements OnInit {
   imagePath: string;
 
   constructor(public activeModal: NgbActiveModal,
-              private activatedRoute: ActivatedRoute,
               private sellerService: SellersService) { }
 
   ngOnInit() {

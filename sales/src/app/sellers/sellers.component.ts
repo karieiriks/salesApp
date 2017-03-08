@@ -28,9 +28,7 @@ export class SellersComponent implements OnInit {
   addSeller() {
     console.log('addSeller() clicked');
     const modalInstance = this.modalService.open(SellerDialogComponent);
-    modalInstance.componentInstance.sellerName = 'Lúlli';
-    modalInstance.componentInstance.category = 'Flokkur';
-    modalInstance.componentInstance.imgPath = 'Mynd';
+    modalInstance.componentInstance.title = 'Nýr Notandi';
     
     modalInstance.result.then(obj => {
       console.log('When pressed OK');
@@ -43,13 +41,14 @@ export class SellersComponent implements OnInit {
 
   editSeller(s: Seller) {
     console.log(s);
-    const modelInstance = this.modalService.open(SellerDialogComponent);
-    modelInstance.componentInstance.id = s.id;
-    modelInstance.componentInstance.sellerName = s.name;
-    modelInstance.componentInstance.category = s.category;
-    modelInstance.componentInstance.imgPath = s.imagePath;
+    const modalInstance = this.modalService.open(SellerDialogComponent);
+    modalInstance.componentInstance.title = 'Breyta Notenda';    
+    modalInstance.componentInstance.id = s.id;
+    modalInstance.componentInstance.sellerName = s.name;
+    modalInstance.componentInstance.category = s.category;
+    modalInstance.componentInstance.imgPath = s.imagePath;
 
-    modelInstance.result.then(obj => {
+    modalInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
     }).catch(err => {
@@ -58,20 +57,3 @@ export class SellersComponent implements OnInit {
     });
   }
 }
-
-/*var successHandler = (result) => {
-      this.seller = result;
-    };
-    var errorHandler = (err) => {
-      // TODO display toastr!
-      console.log('Something failed');
-    };*/
-
-    /*,(err) => {
-      // TODO display toastr!
-      console.log('Something failed');
-    }*/
-    /*this.service.getSellers().subscribe(successHandler, errorHandler);*/
-    /*this.service.getSellerById(2).subscribe(result => {
-      this.seller = result;
-    });*/

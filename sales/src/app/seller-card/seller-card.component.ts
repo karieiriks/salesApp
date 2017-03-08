@@ -24,7 +24,9 @@ export class SellerCardComponent implements OnInit {
       const id = params['id'];
       this.sellerId = <number> id;
     });
+
     this.getSeller(this.sellerId);
+
     this.sellerService.getSellersProduct(this.sellerId).subscribe(result => {
       this.products = result;
     });
@@ -38,16 +40,18 @@ export class SellerCardComponent implements OnInit {
     console.log(this.seller);
   }
 
-
   addProduct() {
     console.log('Add product');
     const modelInstance = this.modalService.open(ProductDialogComponent);
+    
     modelInstance.componentInstance.sellerID = this.sellerId;
     modelInstance.componentInstance.name = 'Ný vara';
     modelInstance.componentInstance.price = 2000;
     modelInstance.componentInstance.quantityInStock = 0;
     modelInstance.componentInstance.quantitySold = 0;
     modelInstance.componentInstance.imagePath = 'imgPath';
+
+    // TODO: We need to validate inputs
 
     console.log('sellerID: ', this.sellerId);
 
@@ -62,6 +66,7 @@ export class SellerCardComponent implements OnInit {
 
   onEditProduct(product: Product) {
     console.log('product: ',product);
+    
     const modelInstance = this.modalService.open(ProductDialogComponent);
     modelInstance.componentInstance.sellerID = this.sellerId;
     modelInstance.componentInstance.id = product.id;
@@ -70,6 +75,8 @@ export class SellerCardComponent implements OnInit {
     modelInstance.componentInstance.quantitySold = product.quantitySold;
     modelInstance.componentInstance.price = product.price;
     modelInstance.componentInstance.imagePath = product.imagePath;
+
+    // TODO: We need to validate inputs
 
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
