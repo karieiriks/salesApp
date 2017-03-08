@@ -28,17 +28,6 @@ export class SellerDialogComponent implements OnInit {
     };
     this.sellerService.postSeller(sellerObj);
     this.activeModal.close();
-
-    /*
-    let newID = sellers.length + 1;
-    
-    this.activeModal.close({
-      id: newID,
-      name: this.sellerName,
-      category: this.category,
-      imgPath: this.imgPath
-    });
-    */
   }
 
   onEdit() {

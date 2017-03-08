@@ -24,4 +24,6 @@ export class ProductCardComponent implements OnInit {
     this.productUpdated.emit(this.product);
   }
 
+  
+
 }

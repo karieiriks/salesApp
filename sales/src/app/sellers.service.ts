@@ -48,6 +48,16 @@ export class SellersService {
     this.http.post('http://localhost:5000/api/sellers', obj, {headers: headers}).toPromise();
   }
 
+  postProduct(productInfo: any, sellerID: number) {
+    console.log('Inside service postProduct() :', productInfo);
+    console.log('Inside service sellerID :', sellerID);
+    console.log('Sending POST request for a new product');
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const obj = JSON.stringify(productInfo);
+    this.http.post(`http://localhost:5000/api/sellers/${sellerID}/products`, obj, {headers: headers}).toPromise();
+  }
+
   putSeller(sellerUpdatedInfo: any) {
     console.log('Inside service :', sellerUpdatedInfo);
     console.log('Sending PUT request for a new seller');
@@ -57,14 +67,6 @@ export class SellersService {
     const obj = JSON.stringify(sellerUpdatedInfo);
     return this.http.put(`http://localhost:5000/api/sellers/${id}`, obj, {headers: headers}).toPromise();
   }
-/*
-  putProduct(updatedProduct: any) {
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    const id = updatedProduct.id;
-    const obj = JSON.stringify(updatedProduct);
-  }
-*/
 
   getSellersProduct(id: number): Observable<Product[]> {
     console.log('ID of user :', id);
@@ -73,5 +75,15 @@ export class SellersService {
       return <Product[]> response.json();
     });
   }
+
+  putProduct(updatedProduct: any, sellerID: number) {
+    /*
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const id = updatedProduct.id;
+    const obj = JSON.stringify(updatedProduct);
+    */
+  }
+
 
 }

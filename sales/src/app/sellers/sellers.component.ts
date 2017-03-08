@@ -16,22 +16,7 @@ export class SellersComponent implements OnInit {
               private service: SellersService) {}
 
   ngOnInit() {
-    /*var successHandler = (result) => {
-      this.seller = result;
-    };
-    var errorHandler = (err) => {
-      // TODO display toastr!
-      console.log('Something failed');
-    };*/
     this.getSellers();
-    /*,(err) => {
-      // TODO display toastr!
-      console.log('Something failed');
-    }*/
-    /*this.service.getSellers().subscribe(successHandler, errorHandler);*/
-    /*this.service.getSellerById(2).subscribe(result => {
-      this.seller = result;
-    });*/
   }
 
   getSellers() {
@@ -73,3 +58,20 @@ export class SellersComponent implements OnInit {
     });
   }
 }
+
+/*var successHandler = (result) => {
+      this.seller = result;
+    };
+    var errorHandler = (err) => {
+      // TODO display toastr!
+      console.log('Something failed');
+    };*/
+
+    /*,(err) => {
+      // TODO display toastr!
+      console.log('Something failed');
+    }*/
+    /*this.service.getSellers().subscribe(successHandler, errorHandler);*/
+    /*this.service.getSellerById(2).subscribe(result => {
+      this.seller = result;
+    });*/

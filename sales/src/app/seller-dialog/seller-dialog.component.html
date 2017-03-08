@@ -12,17 +12,7 @@
 
 <div class="modal-body">
   <label for="category">Category</label>
-  <!--<select>  
-    <option value="Fatnaður">Fatnaður</option>
-    <option value="Bílar">Bílar</option>
-    <option value="Matvörur">Matvörur</option>
-    <option value="Keramik">Keramik</option>
-    <option value="Snyrtivörur">Snyrtivörur</option>
-    <option value="Íþróttavörur">Íþróttavörur</option>
-    <option value="Tölvuvörur">Tölvuvörur</option>
-  </select>-->
   <input [(ngModel)]="category"/>
-  <!--<multiselect ng-model="selection" options="options" show-select-all="true" show-unselect-all="true"></multiselect>-->
 </div>
 
 <div class="modal-body">
@@ -35,3 +25,16 @@
   <button *ngIf="id === 0" type="button" class="btn btn-success" (click)="onSave()">Save</button>
   <button *ngIf="id !== 0" type="button" class="btn btn-success" (click)="onEdit()">Edit</button>
 </div>
+
+
+<!--<select>  
+    <option value="Fatnaður">Fatnaður</option>
+    <option value="Bílar">Bílar</option>
+    <option value="Matvörur">Matvörur</option>
+    <option value="Keramik">Keramik</option>
+    <option value="Snyrtivörur">Snyrtivörur</option>
+    <option value="Íþróttavörur">Íþróttavörur</option>
+    <option value="Tölvuvörur">Tölvuvörur</option>
+  </select>-->
+
+  <!--<multiselect ng-model="selection" options="options" show-select-all="true" show-unselect-all="true"></multiselect>-->
