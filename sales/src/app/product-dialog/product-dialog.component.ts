@@ -9,6 +9,7 @@ import { SellersService } from '../sellers.service';
 })
 export class ProductDialogComponent implements OnInit {
 
+  title: string;
   sellerID: number;
   id = 0;
   name: string;

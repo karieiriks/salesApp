@@ -43,7 +43,8 @@ export class SellerCardComponent implements OnInit {
   addProduct() {
     console.log('Add product');
     const modelInstance = this.modalService.open(ProductDialogComponent);
-    
+
+    modelInstance.componentInstance.title = 'Búa Til Nýja Vöru';
     modelInstance.componentInstance.sellerID = this.sellerId;
     modelInstance.componentInstance.name = 'Ný vara';
     modelInstance.componentInstance.price = 2000;
@@ -68,6 +69,8 @@ export class SellerCardComponent implements OnInit {
     console.log('product: ',product);
     
     const modelInstance = this.modalService.open(ProductDialogComponent);
+
+    modelInstance.componentInstance.title = 'Breyta Vöru';
     modelInstance.componentInstance.sellerID = this.sellerId;
     modelInstance.componentInstance.id = product.id;
     modelInstance.componentInstance.name = product.name;
