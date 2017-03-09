@@ -15,6 +15,8 @@ export class SellerCardComponent implements OnInit {
   seller: Seller;
   products: Product[];
   topTenProducts: Product[];
+  showProductsTab = true;
+  showTopTenTab = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private sellerService: SellersService,
@@ -45,8 +47,8 @@ export class SellerCardComponent implements OnInit {
 
   getTopTen() {
     this.sellerService.getTopTenProducts(this.sellerId).subscribe( result => {
-      this.topTenProducts = result.splice(10);
-      console.log(result);
+      this.topTenProducts = result.slice(0,10);
+      console.log(this.topTenProducts);
     });
   }
 
@@ -98,5 +100,14 @@ export class SellerCardComponent implements OnInit {
       console.log('When pressed Cancel');
       console.log(err);
     });
+  }
+  showProducts() {
+    this.showProductsTab = true;
+    this.showTopTenTab = false;
+  }
+
+  showTopTen() {
+    this.showProductsTab = false;
+    this.showTopTenTab = true;
   }
 }
