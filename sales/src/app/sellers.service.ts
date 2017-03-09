@@ -57,6 +57,14 @@ export class SellersService {
     const obj = JSON.stringify(sellerUpdatedInfo);
     return this.http.put(`http://localhost:5000/api/sellers/${id}`, obj, {headers: headers}).toPromise();
   }
+/*
+  putProduct(updatedProduct: any) {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    const id = updatedProduct.id;
+    const obj = JSON.stringify(updatedProduct);
+  }
+*/
 
   getSellersProduct(id: number): Observable<Product[]> {
     console.log('ID of user :', id);

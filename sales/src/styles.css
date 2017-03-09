@@ -18,3 +18,8 @@
     margin-top: 2rem;
     margin-bottom: 2rem;
 }
+
+.product-div {
+    border-style: outset;
+    margin: 3px;
+}
