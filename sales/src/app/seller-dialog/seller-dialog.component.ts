@@ -9,6 +9,7 @@ import { SellersService } from '../sellers.service';
 })
 
 export class SellerDialogComponent implements OnInit {
+  title: string;
   id = 0;
   sellerName: string;
   category: string;
@@ -46,5 +47,4 @@ export class SellerDialogComponent implements OnInit {
   onCancel() {
     this.activeModal.dismiss();
   }
-
 }

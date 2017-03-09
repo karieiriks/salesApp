@@ -9,8 +9,8 @@ import { SellersService } from '../sellers.service';
 })
 export class ProductDialogComponent implements OnInit {
 
+  title: string;
   sellerID: number;
-
   id = 0;
   name: string;
   price: number;
@@ -33,8 +33,10 @@ export class ProductDialogComponent implements OnInit {
       quantityInStock: this.quantityInStock,
       imagePath: this.imagePath
     };
-    // TODO create postProduct in sellerService
-    //this.sellerService.postSeller(productObj);
+
+    console.log('Seller obj :', productObj);
+    console.log('sellerID :', this.sellerID);
+    this.sellerService.postProduct(productObj, this.sellerID);
     this.activeModal.close();
   }
 
@@ -48,9 +50,8 @@ export class ProductDialogComponent implements OnInit {
       quantityInStock: this.quantityInStock,
       imagePath: this.imagePath
     };
-    // TODO create putProduct in sellerService
-    console.log('Seller obj :', productObj);
-    //this.sellerService.putSeller(productObj);
+    
+    this.sellerService.putProduct(productObj, this.sellerID);
     this.activeModal.close();
   }
 
