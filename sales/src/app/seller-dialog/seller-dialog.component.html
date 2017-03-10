@@ -5,27 +5,50 @@
   </button>
 </div>
 
-<div class="modal-body">
-  <label for="sellerName">Name</label><br>
-  <input [(ngModel)]="sellerName"/>
-</div>
+<form novalidate #f="ngForm">
+  <div class="form-group">
+    <div class="modal-body">
+      
+      <label for="sellerName">Nafn</label><br>
+      <input type="text" id="sellerName" [(ngModel)]="model.sellerName" 
+            class="form-control" required name="sellerName" #sellerName="ngModel">
+      <div *ngIf="sellerName.errors && (sellerName.dirty || sellerName.touched)" class="alert alert-danger">
+        <div [hidden]="!sellerName.errors.required">
+          Sláðu inn nafn!
+        </div>
+      </div>
+    </div>
 
-<div class="modal-body">
-  <label for="category">Category</label><br>
-  <input [(ngModel)]="category"/>
-</div>
+    <div class="modal-body">
+      <label for="category">Flokkur</label><br>
+      <input type="text" id="category" [(ngModel)]="model.category" 
+            class="form-control" required name="category" #category="ngModel">
+      <div *ngIf="category.errors && (category.dirty || category.touched)" class="alert alert-danger">
+        <div [hidden]="!category.errors.required">
+          Veldu Flokk!
+        </div>
+      </div>
+    </div>
 
-<div class="modal-body">
-  <label for="imgPath">Image path</label><br>
-  <input [(ngModel)]="imgPath"/>
-</div>
+    <div class="modal-body">
+      <label for="imgPath">Slóð á Mynd</label><br>
+      <input type="text" id="imgPath" [(ngModel)]="model.imgPath" 
+            class="form-control" required pattern="https?://.+" name="imgPath" #imgPath="ngModel">
+      <div *ngIf="imgPath.errors && (imgPath.dirty || imgPath.touched)" class="alert alert-danger">
+        <div [hidden]="!imgPath.errors.pattern">
+          Linkur verður að innihalda http:// eða https://
+        </div>
+      </div>
+    </div>
 
-<div class="modal-footer">
-  <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
-  <button *ngIf="!id" type="button" class="btn btn-success btn-sm" (click)="onSave()">Save</button>
-  <button *ngIf="id" type="button" class="btn btn-warning btn-sm" (click)="onEdit()">Edit</button>
-</div>
-
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
+      <button *ngIf="model.id === 0 && !sellerName.errors && !category.errors && !imgPath.errors" type="button" class="btn btn-success btn-sm" (click)="onSave()">Save</button>
+      <button *ngIf="model.id !== 0 && !sellerName.errors && !category.errors && !imgPath.errors" type="button" class="btn btn-warning btn-sm" (click)="onEdit()">Edit</button>
+    
+    </div>
+  </div>
+</form>
 
 <!--<select>  
     <option value="Fatnaður">Fatnaður</option>
@@ -35,6 +58,12 @@
     <option value="Snyrtivörur">Snyrtivörur</option>
     <option value="Íþróttavörur">Íþróttavörur</option>
     <option value="Tölvuvörur">Tölvuvörur</option>
+
+
+            <ngb-alert type="warning">
+          Sláðu inn nafn!
+        </ngb-alert>
   </select>-->
 
   <!--<multiselect ng-model="selection" options="options" show-select-all="true" show-unselect-all="true"></multiselect>-->
+

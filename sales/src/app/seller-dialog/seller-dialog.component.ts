@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellersService } from '../sellers.service';
+import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Seller } from '../seller.model';
 
 @Component({
   selector: 'app-seller-dialog',
@@ -15,7 +17,20 @@ export class SellerDialogComponent implements OnInit {
   category: string;
   imgPath: string;
 
-  constructor(public activeModal: NgbActiveModal, private sellerService: SellersService) { }
+  form: FormGroup;
+
+  model = new Seller(0,'','','');
+
+  constructor(public activeModal: NgbActiveModal, 
+              private sellerService: SellersService, 
+              public fb: FormBuilder) {
+    
+    this.form = this.fb.group({
+      sellerName: ['', Validators.required],
+      category: ['', Validators.required],
+      imgPath: ['', Validators.required]
+    });
+  }
 
   ngOnInit() {
   }
@@ -24,9 +39,9 @@ export class SellerDialogComponent implements OnInit {
     console.log(this);
     const sellerObj = {
       id: this.sellerService.nextId,
-      name: this.sellerName,
-      category: this.category,
-      imagePath: this.imgPath
+      name: this.model.sellerName,
+      category: this.model.category,
+      imagePath: this.model.imgPath
     };
     this.sellerService.postSeller(sellerObj);
     this.activeModal.close(sellerObj);
