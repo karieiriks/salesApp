@@ -19,13 +19,13 @@
   </div>
 </div>
 
-<div class="container">
+<div class="tabs">
   <ul class="nav nav-tabs">
   <li class="nav-item">
-    <button class="nav-link" (click)="showProducts()">Allar Vörur</button>
+    <a class="nav-link" href="showProducts()">Allar Vörur</a>
   </li>
   <li class="nav-item">
-    <button class="nav-link" (click)="showTopTen()">Top 10</button>
+    <a class="nav-link" href="showTopTen()">Top 10</a>
   </li>
 </ul>
 <div *ngIf="showProductsTab === true" class="tab-content">
