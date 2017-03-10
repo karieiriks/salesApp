@@ -29,20 +29,13 @@ export class SellersComponent implements OnInit {
     console.log('addSeller() clicked');
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.componentInstance.title = 'Nýr Notandi';
-    
+
     modalInstance.result.then(obj => {
       console.log(this.sellers);
       if (obj !== null) {
         console.log('NOT NULL');
-        /*const tmpObj = {
-          id: this.sellers[-1].id + 1,
-          name: obj.name,
-          category: obj.category,
-          imagePath: obj.imagePath
-        }*/
         console.log(this.sellers[-1]);
         this.sellers.push(obj);
-        //console.log(this.sellers[-1]);// = this.sellers[-2].id + 1;
       }
       console.log('When pressed OK');
       console.log('Dialog object :', obj);
@@ -55,7 +48,7 @@ export class SellersComponent implements OnInit {
   editSeller(s: Seller) {
     console.log(s);
     const modalInstance = this.modalService.open(SellerDialogComponent);
-    modalInstance.componentInstance.title = 'Breyta Notenda';    
+    modalInstance.componentInstance.title = 'Breyta Notenda';
     modalInstance.componentInstance.id = s.id;
     modalInstance.componentInstance.sellerName = s.name;
     modalInstance.componentInstance.category = s.category;

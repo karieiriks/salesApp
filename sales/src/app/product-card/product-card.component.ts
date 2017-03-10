@@ -7,7 +7,7 @@ import { Product } from '../sellers.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent implements OnInit {
-  
+
   @Input()
   product: Product;
 
