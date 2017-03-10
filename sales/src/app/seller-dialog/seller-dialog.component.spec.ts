@@ -22,7 +22,7 @@ describe('SellerDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  /*xit('should create', () => {
     expect(component).toBeTruthy();
-  });
+  });*/
 });

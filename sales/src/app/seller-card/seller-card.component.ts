@@ -47,7 +47,7 @@ export class SellerCardComponent implements OnInit {
 
   getTopTen() {
     this.sellerService.getTopTenProducts(this.sellerId).subscribe( result => {
-      this.topTenProducts = result.slice(0,10);
+      this.topTenProducts = result.slice(0, 10);
       console.log(this.topTenProducts);
     });
   }
@@ -78,8 +78,8 @@ export class SellerCardComponent implements OnInit {
   }
 
   onEditProduct(product: Product) {
-    console.log('product: ',product);
-    
+    console.log('product: ', product);
+
     const modelInstance = this.modalService.open(ProductDialogComponent);
 
     modelInstance.componentInstance.title = 'Breyta Vöru';

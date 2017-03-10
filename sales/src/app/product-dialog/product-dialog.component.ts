@@ -50,7 +50,7 @@ export class ProductDialogComponent implements OnInit {
       quantityInStock: this.quantityInStock,
       imagePath: this.imagePath
     };
-    
+
     this.sellerService.putProduct(productObj, this.sellerID);
     this.activeModal.close();
   }
