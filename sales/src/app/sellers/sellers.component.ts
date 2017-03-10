@@ -29,6 +29,9 @@ export class SellersComponent implements OnInit {
     console.log('addSeller() clicked');
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.componentInstance.title = 'Nýr Notandi';
+
+    modalInstance.componentInstance.model.id = 0;
+
     
     modalInstance.result.then(obj => {
       console.log(this.sellers);
@@ -56,10 +59,10 @@ export class SellersComponent implements OnInit {
     console.log(s);
     const modalInstance = this.modalService.open(SellerDialogComponent);
     modalInstance.componentInstance.title = 'Breyta Notenda';    
-    modalInstance.componentInstance.id = s.id;
-    modalInstance.componentInstance.sellerName = s.name;
-    modalInstance.componentInstance.category = s.category;
-    modalInstance.componentInstance.imgPath = s.imagePath;
+    modalInstance.componentInstance.model.id = s.id;
+    modalInstance.componentInstance.model.sellerName = s.name;
+    modalInstance.componentInstance.model.category = s.category;
+    modalInstance.componentInstance.model.imgPath = s.imagePath;
 
     modalInstance.result.then(obj => {
       console.log('When pressed OK');
