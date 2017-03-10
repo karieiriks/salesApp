@@ -7,7 +7,7 @@
 
 <div class="modal-body">
   <label for="name">Name</label><br>
-  <input class="form-control" [(ngModel)]="name" id="name" required/>
+  <input class="form-control" [(ngModel)]="name" id="nameField" required/>
   <div class="alert alert-danger" *ngIf="invalidName">{{nameError}}</div>
 </div>
 

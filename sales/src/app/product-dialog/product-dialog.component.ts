@@ -80,6 +80,14 @@ export class ProductDialogComponent implements OnInit {
     this.quantitySoldIsInvalid = false;
     let res = true;
 
+    let input = (<HTMLInputElement>document.getElementById("nameField")).value;
+
+    if(input == "") {
+      this.invalidName = true;
+      this.nameError = "Please enter a name...";
+      res = false;
+    }
+
     if(this.isNumeric(this.name)) {
       this.invalidName = true;
       this.nameError = "Name cannot be numbers only...";
