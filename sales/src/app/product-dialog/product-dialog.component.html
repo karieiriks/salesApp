@@ -7,27 +7,31 @@
 
 <div class="modal-body">
   <label for="name">Name</label><br>
-  <input [(ngModel)]="name" required/>
+  <input class="form-control" [(ngModel)]="name" id="name" required/>
+  <div class="alert alert-danger" *ngIf="invalidName">{{nameError}}</div>
 </div>
 
 <div class="modal-body">
   <label for="price">Price</label><br>
-  <input [(ngModel)]="price" required/>
+  <input class="form-control" [(ngModel)]="price" required/>
+  <div class="alert alert-danger" *ngIf="priceIsInvalid">{{priceError}}</div>
 </div>
 
 <div class="modal-body">
   <label for="quantitySold">QuantitySold</label><br>
-  <input [(ngModel)]="quantitySold"/>
+  <input class="form-control" [(ngModel)]="quantitySold"/>
+  <div class="alert alert-danger" *ngIf="quantitySoldIsInvalid">{{quantitySoldError}}</div>
 </div>
 
 <div class="modal-body">
   <label for="quantityInStock">QuantityInStock</label><br>
-  <input [(ngModel)]="quantityInStock"/>
+  <input class="form-control" [(ngModel)]="quantityInStock"/>
+  <div class="alert alert-danger"*ngIf="quantityInStockIsInvalid">{{quantityStockError}}</div>
 </div>
 
 <div class="modal-body">
   <label for="imagePath">Image path</label><br>
-  <input [(ngModel)]="imagePath"/>
+  <input class="form-control" [(ngModel)]="imagePath"/>
 </div>
 
 <div class="modal-footer">
