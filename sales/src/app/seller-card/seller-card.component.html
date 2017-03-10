@@ -22,10 +22,10 @@
 <div class="tabs">
   <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link" href="showProducts()">Allar Vörur</a>
+    <button class="nav-link" (click)="showProducts()">Allar Vörur</button>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="showTopTen()">Top 10</a>
+    <button class="nav-link" (click)="showTopTen()">Top 10</button>
   </li>
 </ul>
 <div *ngIf="showProductsTab === true" class="tab-content">

@@ -10,7 +10,6 @@
   <table class="table">
     <thead class="thead-default">
       <tr>
-        <th scope="row">ID</th>
         <th>Nafn Seljanda</th>
         <th>Flokkur</th>
         <th align="right"></th>
@@ -18,7 +17,6 @@
     </thead>
     <tbody>
       <tr *ngFor="let s of sellers">
-        <td>{{s.id}}</td>
         <td><a href="sellers/{{s.id}}"> {{s.name}}</a></td>
         <td>{{s.category}}</td>
         <td align="right"><button class="btn btn-outline-warning btn-sm" (click)="editSeller(s)">Breyta notanda</button></td>

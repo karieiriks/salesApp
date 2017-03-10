@@ -22,13 +22,17 @@ export interface Product {
 @Injectable()
 export class SellersService {
 
+  nextId: number;
   constructor(private http: Http) { }
 
   getSellers(): Observable<Seller[]> {
     console.log('Calling getSellers');
     return this.http.get('http://localhost:5000/api/sellers')
     .map(response => {
-      return <Seller[]> response.json();
+      const obj = <Seller[]> response.json();
+      this.nextId = obj.length + 1;
+      console.log(this.nextId);
+      return obj;
     });
   }
 

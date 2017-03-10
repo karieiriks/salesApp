@@ -10,7 +10,7 @@ import { SellersService } from '../sellers.service';
 
 export class SellerDialogComponent implements OnInit {
   title: string;
-  id = 0;
+  id: number;
   sellerName: string;
   category: string;
   imgPath: string;
@@ -20,15 +20,16 @@ export class SellerDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSave() {
+  onSave(): any {
     console.log(this);
     const sellerObj = {
+      id: this.sellerService.nextId,
       name: this.sellerName,
       category: this.category,
       imagePath: this.imgPath
     };
     this.sellerService.postSeller(sellerObj);
-    this.activeModal.close();
+    this.activeModal.close(sellerObj);
   }
 
   onEdit() {
