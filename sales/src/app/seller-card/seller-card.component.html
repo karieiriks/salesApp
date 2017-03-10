@@ -22,15 +22,15 @@
 <div class="container">
   <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" href="#">Allar Vörur</a>
+    <button class="nav-link" (click)="showProducts()">Allar Vörur</button>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="#">Top 10</a>
+    <button class="nav-link" (click)="showTopTen()">Top 10</button>
   </li>
 </ul>
-<div class="tab-content">
+<div *ngIf="showProductsTab === true" class="tab-content">
   <div class="row">
-    <div *ngFor="let p of products"  class="col-xs-6 col-md-3">
+    <div id="tab-products" *ngFor="let p of products"  class="col-xs-6 col-md-3">
       <app-product-card [product]="p"
                         (productUpdated)="onEditProduct($event)">
 
@@ -38,6 +38,16 @@
     </div>
   </div>
 </div>
+<div *ngIf="showTopTenTab === true" class="tab-content">
+  <div class="row">
+    <div id="tab-topTen" *ngFor="let tp of topTenProducts"  class="col-xs-6 col-md-3">
+          <app-product-card [product]="tp"
+                            (productUpdated)="onEditProduct($event)">
+
+          </app-product-card>
+        </div>
+    </div>
+  </div>
 </div>
 
 <template ngbModalContainer></template>

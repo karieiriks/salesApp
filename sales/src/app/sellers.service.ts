@@ -87,5 +87,17 @@ export class SellersService {
     return this.http.put(`http://localhost:5000/api/sellers/${sellerID}/products/${id}`, obj, {headers: headers}).toPromise();
   }
 
+  getTopTenProducts(id: number): Observable<Product[]> {
+    console.log('ID of the user : ', id)
+    return this.http.get(`http://localhost:5000/api/sellers/${id}/products`)
+    .map(response => {
+      let temp = <Product[]> response.json();
+      temp.sort((a,b) => {
+        return ((b.price * b.quantitySold) - (a.price * a.quantitySold));
+      });
+      return temp;
+    });
+  }
+
 
 }
