@@ -78,7 +78,6 @@ export class SellersService {
     return this.http.get(`http://localhost:5000/api/sellers/${id}/products`)
     .map(response => {
       let temp = <Product[]> response.json();
-      this.nextProductId = temp.length + 1;
       return temp;
     });
   }

@@ -43,14 +43,14 @@ export class ProductDialogComponent implements OnInit {
   onSave() {
     console.log(this);
     const productObj = {
-      //id: this.sellerService.nextProductId,
+      id: this.sellerService.nextProductId,
       name: this.name,
       price: this.price,
       quantitySold: this.quantitySold,
       quantityInStock: this.quantityInStock,
       imagePath: this.imagePath
     };
-    //this.sellerService.nextProductId++;
+    this.sellerService.nextProductId++;
     console.log('Seller obj :', productObj);
     console.log('sellerID :', this.sellerID);
     
