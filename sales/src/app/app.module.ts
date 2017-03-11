@@ -31,6 +31,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     FormsModule,
     HttpModule,
     NgbModule.forRoot(),
+    ToastModule.forRoot(),
     RouterModule.forRoot([{
       path: '',
       redirectTo: 'sellers',

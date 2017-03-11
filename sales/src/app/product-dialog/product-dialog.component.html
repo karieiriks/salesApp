@@ -7,7 +7,7 @@
 
 <div class="modal-body">
   <label for="name">Name</label><br>
-  <input class="form-control" [(ngModel)]="name" id="name" required/>
+  <input class="form-control" [(ngModel)]="name" id="nameField" required/>
   <div class="alert alert-danger" *ngIf="invalidName">{{nameError}}</div>
 </div>
 
@@ -36,6 +36,6 @@
 
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
-  <button *ngIf="id === 0" type="button" class="btn btn-success btn-sm" (click)="onSave()">Save</button>
+  <button *ngIf="id === 0" type="button" class="btn btn-success btn-sm" (click)="onSave()" id="btnSave">Save</button>
   <button *ngIf="id !== 0" type="button" class="btn btn-warning btn-sm" (click)="onEdit()">Edit</button>
 </div>

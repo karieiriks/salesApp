@@ -1,8 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Seller, SellersService, Product } from '../sellers.service';
 import { ActivatedRoute } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-seller-card',
@@ -20,7 +21,11 @@ export class SellerCardComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute,
               private sellerService: SellersService,
-              private modalService: NgbModal) { }
+              private modalService: NgbModal,
+              public toastr: ToastsManager,
+              public vcr: ViewContainerRef) {
+                this.toastr.setRootViewContainerRef(vcr);
+               }
 
   ngOnInit() {
     const route = this.activatedRoute.params.subscribe(params => {
@@ -71,9 +76,12 @@ export class SellerCardComponent implements OnInit {
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
+      this.products.push(obj);
+      this.toastr.success('Success!', 'Product added');
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
+      this.toastr.info('Cancelled!', 'Product not added');
     });
   }
 
@@ -99,6 +107,7 @@ export class SellerCardComponent implements OnInit {
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
+      this.toastr.info('Cancelled!', 'Update cancelled');
     });
   }
   showProducts() {

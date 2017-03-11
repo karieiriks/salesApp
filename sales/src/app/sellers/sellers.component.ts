@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { SellersService, Seller } from '../sellers.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDialogComponent } from '../seller-dialog/seller-dialog.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr'
 
 @Component({
   selector: 'app-sellers',
@@ -13,7 +14,11 @@ export class SellersComponent implements OnInit {
   seller: Seller;
 
   constructor(private modalService: NgbModal,
-              private service: SellersService) {}
+              private service: SellersService,
+              public toastr: ToastsManager,
+              public vcr: ViewContainerRef) {
+                this.toastr.setRootViewContainerRef(vcr);
+              }
 
   ngOnInit() {
     this.getSellers();
@@ -41,9 +46,11 @@ export class SellersComponent implements OnInit {
       }
       console.log('When pressed OK');
       console.log('Dialog object :', obj);
+      this.toastr.success('Success!', 'Seller added');
     }).catch(err => {
       console.log('When presses Cancel');
       console.log(err);
+      this.toastr.info('Cancelled', 'No seller added')
     });
   }
 
@@ -60,9 +67,11 @@ export class SellersComponent implements OnInit {
     modalInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
+      this.toastr.success('Success!', 'Seller updated');
     }).catch(err => {
       console.log('When presses Cancel');
       console.log(err);
+      this.toastr.info('Cancelled!', 'Update cancelled');
     });
   }
 }
