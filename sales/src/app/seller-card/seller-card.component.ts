@@ -37,6 +37,9 @@ export class SellerCardComponent implements OnInit {
 
     this.sellerService.getSellersProduct(this.sellerId).subscribe(result => {
       this.products = result;
+      if(this.products.length == 0) {
+        this.toastr.info("Engar vörur hjá þessum seljanda", "Æjæj");
+      }
     });
     this.getTopTen();
     console.log(this.topTenProducts);
@@ -77,7 +80,9 @@ export class SellerCardComponent implements OnInit {
       console.log('When pressed OK');
       console.log(obj);
       this.products.push(obj);
-      this.toastr.success('Success!', 'Product added');
+      if(this.products.length != 0) {
+        this.toastr.success('Success!', 'Product added');
+      }
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
@@ -104,10 +109,11 @@ export class SellerCardComponent implements OnInit {
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
+      this.toastr.success("Vara uppfærð", "Jeij");
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
-      this.toastr.info('Cancelled!', 'Update cancelled');
+      this.toastr.info('Hætt við uppfærslu', 'Hætt við!');
     });
   }
   showProducts() {
