@@ -45,11 +45,11 @@ export class SellersComponent implements OnInit {
       }
       console.log('When pressed OK');
       console.log('Dialog object :', obj);
-      this.toastr.success('Success!', 'Seller added');
+      this.toastr.success('Nýjum seljanda bætt við', 'Tókst!');
     }).catch(err => {
       console.log('When presses Cancel');
       console.log(err);
-      this.toastr.info('Cancelled', 'No seller added')
+      this.toastr.info('Engum seljanda bætt við', 'Hætt við!')
     });
   }
 

@@ -37,6 +37,9 @@ export class SellerCardComponent implements OnInit {
 
     this.sellerService.getSellersProduct(this.sellerId).subscribe(result => {
       this.products = result;
+      if(this.products.length == 0) {
+        this.toastr.info("Engar vörur hjá þessum seljanda", "Æjæj");
+      }
       console.log('All products : ', result);
       this.getTopTen();
       console.log('Top ten : ', this.topTenProducts);
@@ -89,6 +92,9 @@ export class SellerCardComponent implements OnInit {
       console.log(obj);
       const returnObj = this.sellerService.postProduct(obj, this.sellerId);
       this.products.push(obj);
+      if(this.products.length != 0) {
+        this.toastr.success('Success!', 'Product added');
+      }
       //this.getTopTen();
       this.toastr.success('Success!', 'Product added');
     }).catch(err => {
@@ -117,6 +123,7 @@ export class SellerCardComponent implements OnInit {
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
+      this.toastr.success("Vara uppfærð", "Jeij");
       const returnObj = this.sellerService.putProduct(obj, this.sellerId);
       console.log(returnObj);
       this.replaceEditedProduct(obj);
@@ -124,7 +131,7 @@ export class SellerCardComponent implements OnInit {
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
-      this.toastr.info('Cancelled!', 'Update cancelled');
+      this.toastr.info('Hætt við uppfærslu', 'Hætt við!');
     });
   }
 

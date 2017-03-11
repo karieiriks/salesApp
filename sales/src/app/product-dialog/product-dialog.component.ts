@@ -57,8 +57,9 @@ export class ProductDialogComponent implements OnInit {
     if(this.validateProductInfo()) {
       //this.sellerService.postProduct(productObj, this.sellerID);      
       this.activeModal.close(productObj);
+    } else {
+      this.toastr.error('Failure', 'Product info invalid');
     }
-    this.toastr.error('Failure', 'Product info invalid');
   }
   
   onEdit() {

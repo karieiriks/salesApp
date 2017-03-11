@@ -23,8 +23,8 @@ export interface Product {
 export class SellersService {
 
   nextId: number;
-  nextProductId: number;
-  constructor(private http: Http) { }
+  constructor(private http: Http) {}
+
 
   getSellers(): Observable<Seller[]> {
     console.log('Calling getSellers');
