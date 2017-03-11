@@ -25,6 +25,7 @@ export class SellersService {
   nextId: number;
   constructor(private http: Http) {}
 
+
   getSellers(): Observable<Seller[]> {
     console.log('Calling getSellers');
     return this.http.get('http://localhost:5000/api/sellers')
@@ -76,7 +77,9 @@ export class SellersService {
     console.log('ID of user :', id);
     return this.http.get(`http://localhost:5000/api/sellers/${id}/products`)
     .map(response => {
-      return <Product[]> response.json();
+      let temp = <Product[]> response.json();
+      this.nextProductId = temp.length + 1;
+      return temp;
     });
   }
 

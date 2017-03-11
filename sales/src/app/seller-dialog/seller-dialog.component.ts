@@ -43,21 +43,22 @@ export class SellerDialogComponent implements OnInit {
       category: this.model.category,
       imagePath: this.model.imgPath
     };
-    this.sellerService.postSeller(sellerObj);
+    this.sellerService.nextId++;
+    //this.sellerService.postSeller(sellerObj);
     this.activeModal.close(sellerObj);
   }
 
   onEdit() {
     console.log(this);
     const sellerObj = {
-      id: this.id,
-      name: this.sellerName,
-      category: this.category,
-      imagePath: this.imgPath
+      id: this.model.id,
+      name: this.model.sellerName,
+      category: this.model.category,
+      imagePath: this.model.imgPath
     };
     console.log('Seller obj :', sellerObj);
-    this.sellerService.putSeller(sellerObj);
-    this.activeModal.close();
+    //this.sellerService.putSeller(sellerObj);
+    this.activeModal.close(sellerObj);
   }
 
   onCancel() {
