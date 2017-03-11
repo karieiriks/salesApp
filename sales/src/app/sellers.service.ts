@@ -23,6 +23,7 @@ export interface Product {
 export class SellersService {
 
   nextId: number;
+  nextProductId: number;
   constructor(private http: Http) { }
 
   getSellers(): Observable<Seller[]> {
@@ -76,7 +77,9 @@ export class SellersService {
     console.log('ID of user :', id);
     return this.http.get(`http://localhost:5000/api/sellers/${id}/products`)
     .map(response => {
-      return <Product[]> response.json();
+      let temp = <Product[]> response.json();
+      this.nextProductId = temp.length + 1;
+      return temp;
     });
   }
 

@@ -37,9 +37,10 @@ export class SellerCardComponent implements OnInit {
 
     this.sellerService.getSellersProduct(this.sellerId).subscribe(result => {
       this.products = result;
+      console.log('All products : ', result);
+      this.getTopTen();
+      console.log('Top ten : ', this.topTenProducts);
     });
-    this.getTopTen();
-    console.log(this.topTenProducts);
   }
 
   getSeller(id: number) {
@@ -57,6 +58,16 @@ export class SellerCardComponent implements OnInit {
     });
   }
 
+/*
+  getTopTen() {
+    let temp = this.products;
+    temp.sort((a,b) => {
+        return ((b.price * b.quantitySold) - (a.price * a.quantitySold));
+    });
+    console.log(temp);
+    this.topTenProducts = temp.slice(0,10);
+  }
+*/
   addProduct() {
     console.log('Add product');
     const modelInstance = this.modalService.open(ProductDialogComponent);
@@ -76,7 +87,9 @@ export class SellerCardComponent implements OnInit {
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
+      const returnObj = this.sellerService.postProduct(obj, this.sellerId);
       this.products.push(obj);
+      //this.getTopTen();
       this.toastr.success('Success!', 'Product added');
     }).catch(err => {
       console.log('When pressed Cancel');
@@ -104,12 +117,34 @@ export class SellerCardComponent implements OnInit {
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
+      const returnObj = this.sellerService.putProduct(obj, this.sellerId);
+      console.log(returnObj);
+      this.replaceEditedProduct(obj);
+      //this.getTopTen();
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
       this.toastr.info('Cancelled!', 'Update cancelled');
     });
   }
+
+  /**
+   * Since there is no functionality for deleting product so 
+   * they are always ordered correctly in the arrays.
+   * 
+   * @param updatedProduct is the updated product information
+   */
+  replaceEditedProduct(updatedProduct: Object) {
+    this.products[updatedProduct['id'] - 1] = <Product> updatedProduct;
+  }
+
+  updateTopTen(newObj: Object) {
+    this.topTenProducts.push(<Product> newObj);
+    this.topTenProducts.sort((a, b) => {
+      return ((b.price * b.quantitySold) - (a.price * a.quantitySold)); 
+    });
+  }  
+
   showProducts() {
     this.showProductsTab = true;
     this.showTopTenTab = false;

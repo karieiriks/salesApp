@@ -43,18 +43,19 @@ export class ProductDialogComponent implements OnInit {
   onSave() {
     console.log(this);
     const productObj = {
+      //id: this.sellerService.nextProductId,
       name: this.name,
       price: this.price,
       quantitySold: this.quantitySold,
       quantityInStock: this.quantityInStock,
       imagePath: this.imagePath
     };
-
+    //this.sellerService.nextProductId++;
     console.log('Seller obj :', productObj);
     console.log('sellerID :', this.sellerID);
     
     if(this.validateProductInfo()) {
-      this.sellerService.postProduct(productObj, this.sellerID);      
+      //this.sellerService.postProduct(productObj, this.sellerID);      
       this.activeModal.close(productObj);
     }
     this.toastr.error('Failure', 'Product info invalid');
@@ -72,8 +73,8 @@ export class ProductDialogComponent implements OnInit {
     };
     
     if(this.validateProductInfo()) {
-      this.sellerService.putProduct(productObj, this.sellerID);
-      this.activeModal.close();
+      //this.sellerService.putProduct(productObj, this.sellerID);
+      this.activeModal.close(productObj);
     }
   }
 
