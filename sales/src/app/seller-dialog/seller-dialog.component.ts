@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellersService } from '../sellers.service';
 import { FormsModule, FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
@@ -16,20 +16,11 @@ export class SellerDialogComponent implements OnInit {
   sellerName: string;
   category: string;
   imgPath: string;
-
-  form: FormGroup;
-
   model = new Seller(0,'','','');
 
   constructor(public activeModal: NgbActiveModal, 
               private sellerService: SellersService, 
-              public fb: FormBuilder) {
-    
-    this.form = this.fb.group({
-      sellerName: ['', Validators.required],
-      category: ['', Validators.required],
-      imgPath: ['', Validators.required]
-    });
+              public fb: FormBuilder,) {
   }
 
   ngOnInit() {
