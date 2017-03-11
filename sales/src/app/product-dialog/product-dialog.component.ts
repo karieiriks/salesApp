@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SellersService } from '../sellers.service';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-product-dialog',
@@ -30,7 +31,11 @@ export class ProductDialogComponent implements OnInit {
   quantityStockError: string;
 
   constructor(public activeModal: NgbActiveModal,
-              private sellerService: SellersService) { }
+              private sellerService: SellersService,
+              public toastr: ToastsManager,
+              public vcr: ViewContainerRef) {
+                this.toastr.setRootViewContainerRef(vcr);
+               }
 
   ngOnInit() {
   }
@@ -49,9 +54,10 @@ export class ProductDialogComponent implements OnInit {
     console.log('sellerID :', this.sellerID);
     
     if(this.validateProductInfo()) {
-      this.sellerService.postProduct(productObj, this.sellerID);
-      this.activeModal.close();
+      this.sellerService.postProduct(productObj, this.sellerID);      
+      this.activeModal.close(productObj);
     }
+    this.toastr.error('Failure', 'Product info invalid');
   }
   
   onEdit() {
@@ -65,8 +71,10 @@ export class ProductDialogComponent implements OnInit {
       imagePath: this.imagePath
     };
     
-    this.sellerService.putProduct(productObj, this.sellerID);
-    this.activeModal.close();
+    if(this.validateProductInfo()) {
+      this.sellerService.putProduct(productObj, this.sellerID);
+      this.activeModal.close();
+    }
   }
 
   onCancel() {
