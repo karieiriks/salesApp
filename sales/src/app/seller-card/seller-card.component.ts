@@ -58,8 +58,8 @@ export class SellerCardComponent implements OnInit {
   getProducts() {
       this.sellerService.getSellersProduct(this.sellerId).subscribe(result => {
         this.products = result;
-        if(this.products.length == 0) {
-          this.toastr.info("Engar vörur hjá þessum seljanda");
+        if(this.products.length === 0) {
+          this.toastr.info('Engar vörur hjá þessum seljanda');
         }
       });
   }
@@ -81,14 +81,14 @@ export class SellerCardComponent implements OnInit {
         if (response['ok'] === true) {
           this.getTopTen();
           this.getProducts();
-          this.toastr.success('Success!', 'Product added');
+          this.toastr.success('Vöru bætt við');
         }
       });
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
       if (err === 'Dismissed by user') {
-        this.toastr.info('Cancelled!', 'Product not added');
+        this.toastr.info('Hætt við!', 'Engri vöru bætt við');
       }
     });
   }
@@ -107,8 +107,6 @@ export class SellerCardComponent implements OnInit {
     modelInstance.componentInstance.price = product.price;
     modelInstance.componentInstance.imagePath = product.imagePath;
 
-    // TODO: We need to validate inputs
-
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
@@ -117,23 +115,29 @@ export class SellerCardComponent implements OnInit {
         if (response['ok'] === true) {
           this.getTopTen();
           this.getProducts();
-          this.toastr.success("Vara uppfærð", "Jeij");
+          this.toastr.success('Vara uppfærð');
         }
       });
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
-      this.toastr.info('Hætt við uppfærslu', 'Hætt við!');
+      this.toastr.info('Hætt við breytingar');
     });
   }
 
   showProducts() {
     this.showProductsTab = true;
     this.showTopTenTab = false;
+    if(this.products.length === 0) {
+      this.toastr.info('Engar vörur hjá þessum seljanda');
+    }
   }
 
   showTopTen() {
     this.showProductsTab = false;
     this.showTopTenTab = true;
+    if(this.topTenProducts.length === 0) {
+      this.toastr.info('Engar vörur hjá þessum seljanda');
+    }
   }
 }

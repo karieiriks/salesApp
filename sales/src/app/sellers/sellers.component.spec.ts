@@ -142,8 +142,14 @@ describe('SellersComponent', () => {
   });
 
   xit('should open a modalDialog on editSeller', () => {
-    mockService.editSeller();
-    expect(modalMock.open()).toEqual(true);
+    const editedSeller = {
+      id: 1,
+      name: 'Lúlli',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+    };
+    component.editSeller(editedSeller);
+    expect(component.sellers[0]).toEqual(editedSeller);
   });
 
 });

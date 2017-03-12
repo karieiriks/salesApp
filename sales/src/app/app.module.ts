@@ -25,6 +25,7 @@ import { ProductCardComponent } from './product-card/product-card.component';
     ProductCardComponent
   ],
   imports: [
+    [BrowserModule, ToastModule.forRoot()],
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
