@@ -2,6 +2,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { SellersService } from '../sellers.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, FormBuilder } from '@angular/forms';
 
 import { SellerDialogComponent } from './seller-dialog.component';
 
@@ -9,52 +12,26 @@ describe('SellerDialogComponent', () => {
   let component: SellerDialogComponent;
   let fixture: ComponentFixture<SellerDialogComponent>;
 
-  class SellerServiceMock {
-    fakeModel = {
-      id: 0,
-      name: 'newName',
-      category: 'newCategory',
-      imgPath: 'newImgPath'
-    }
-    onSave() {
-
-    }
-
-    onEdit() {
-
-    }
-
-    onCancel() {
-
-    }
-  }
+  let serviceMock = {
+    nextId: 0
+  };
 
   const mockModal = {
-    onSavePressed: true,
-    seller: {
-      id: 5,
-      name: 'newName',
-      category: 'newCategory',
-      imgPath: 'imgPath'
-    },
-    onSave: function() {
-      return {
-        result: {
-          then: function(fnSave, fnCancel) {
-            if(mockModal.onSavePressed === true) {
-              fnSave(mockModal.seller);
-            } else {
-              fnCancel();
-            }
-          }
-        }
-      };
-    }
-  };
+    close: jasmine.createSpy('close'),
+    dismiss: jasmine.createSpy('dismiss')
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellerDialogComponent ]
+      declarations: [ SellerDialogComponent ],
+      imports: [ FormsModule ],
+      providers: [{
+        provide: SellersService,
+        useValue: serviceMock
+      }, {
+        provide: NgbActiveModal,
+        useValue: mockModal
+      }, FormBuilder]
     })
     .compileComponents();
   }));
@@ -65,15 +42,26 @@ describe('SellerDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should add a new seller onSave()', () => {
-    let seller: {
-      id: 5,
-      name: 'newName',
-      category: 'newCategory',
-      imgPath: 'imgPath'
-    };
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
 
-    expect(mockModal.onSave()).toEqual(seller);
-  });*/
+  it('should send new data from the modal', () => {
+    component.activeModal = mockModal;
+    component.onSave();
+    expect(mockModal.dismiss).toHaveBeenCalled;
+  });
+
+  it('should send edited data from the modal', () => {
+    component.activeModal = mockModal;
+    component.onEdit();
+    expect(mockModal.dismiss).toHaveBeenCalled;
+  });
+
+  it('should cancel the modal', () => {
+    component.activeModal = mockModal;
+    component.onCancel();
+    expect(mockModal.dismiss).toHaveBeenCalled;
+  });
 
 });

@@ -39,7 +39,7 @@ describe('ProductDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should save the content in the modal', () => {
+  it('should send the content from the modal', () => {
     component.activeModal = mockModal;
     component.isTesting = true;
     component.input = 'test';
@@ -65,7 +65,7 @@ describe('ProductDialogComponent', () => {
     expect(mockModal.close).not.toHaveBeenCalled;
   });
 
-  it('should cancel the modal', () => {
+  it('should send edited content from the modal', () => {
     component.activeModal = mockModal;
     component.isTesting = true;
     component.input = 'test';
