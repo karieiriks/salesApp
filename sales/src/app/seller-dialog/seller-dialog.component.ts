@@ -16,11 +16,11 @@ export class SellerDialogComponent implements OnInit {
   sellerName: string;
   category: string;
   imgPath: string;
-  model = new Seller(0,'','','');
+  model = new Seller(0, '', '', '');
 
-  constructor(public activeModal: NgbActiveModal, 
-              private sellerService: SellersService, 
-              public fb: FormBuilder,) {
+  constructor(public activeModal: NgbActiveModal,
+              private sellerService: SellersService,
+              public fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -35,7 +35,6 @@ export class SellerDialogComponent implements OnInit {
       imagePath: this.model.imgPath
     };
     this.sellerService.nextId++;
-    //this.sellerService.postSeller(sellerObj);
     this.activeModal.close(sellerObj);
   }
 
@@ -48,11 +47,10 @@ export class SellerDialogComponent implements OnInit {
       imagePath: this.model.imgPath
     };
     console.log('Seller obj :', sellerObj);
-    //this.sellerService.putSeller(sellerObj);
     this.activeModal.close(sellerObj);
   }
 
   onCancel() {
-    this.activeModal.dismiss();
+    this.activeModal.dismiss('Canceled');
   }
 }

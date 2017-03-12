@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { FormsModule } from '@angular/forms';
 import { NgbModalModule, NgbModal, NgbActiveModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { SellerDialogComponent } from '../seller-dialog/seller-dialog.component';
-import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr'
+import { ToastsManager, ToastOptions, ToastContainer } from 'ng2-toastr/ng2-toastr';
 
 import { SellersComponent } from './sellers.component';
 
@@ -15,20 +15,22 @@ describe('SellersComponent', () => {
   let component: SellersComponent;
   let fixture: ComponentFixture<SellersComponent>;
 
-  let sellersServiceMock = {
+  const sellersServiceMock = {
     addedSeller: true,
     editedSeller: true,
     sellers: [{
       id: 1,
       name: 'Kári',
       category: 'Matur',
+      imagePath: 'www.s.is'
     }, {
       id: 2,
       name: 'Lúlli',
       category: 'Föt',
+      imagePath: 'www.s.is'
     }],
 
-    seller: {
+    add: {
       name: 'Kári',
       category: 'Matur',
       imagePath: 'www.s.is'
@@ -43,7 +45,7 @@ describe('SellersComponent', () => {
       return {
         subscribe: function(fnSuccess, fnError) {
           if (sellersServiceMock.addedSeller === true) {
-            fnSuccess(sellersServiceMock.seller);
+            fnSuccess(sellersServiceMock.add);
           } else {
             fnError();
           }
@@ -55,7 +57,7 @@ describe('SellersComponent', () => {
       return {
         subscribe: function(fnSuccess, fnError) {
           if (sellersServiceMock.editedSeller === true) {
-            fnSuccess(sellersServiceMock.seller);
+            fnSuccess(sellersServiceMock.add);
           } else {
             fnError();
           }
@@ -80,6 +82,9 @@ describe('SellersComponent', () => {
               } else {
                 fnError();
               }
+          },
+          catch: (err) => {
+            return 'Error';
           }
         },
         componentInstance: {
@@ -131,25 +136,36 @@ describe('SellersComponent', () => {
   }));*/
 
   it('should open a modalDialog on addSeller', () => {
-    sellersServiceMock.seller = {
+    sellersServiceMock.add = {
       name: 'Kári',
       category: 'Matur',
       imagePath: 'www.s.is'
     };
     component.sellers = [];
     component.addSeller();
-    expect(component.sellers[0]).toEqual(sellersServiceMock.seller);
+    expect(component.sellers[0]).toEqual(sellersServiceMock.add);
   });
 
-  xit('should open a modalDialog on editSeller', () => {
+  it('should open a modalDialog on editSeller', () => {
     const editedSeller = {
+      id: 2,
+      name: 'Lúlli',
+      category: 'Föt',
+      imagePath: 'www.s.is'
+    };
+    component.sellers = [{
       id: 1,
+      name: 'Kári',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+      }, {
+      id: 2,
       name: 'Lúlli',
       category: 'Matur',
       imagePath: 'www.s.is'
-    };
+    }];
     component.editSeller(editedSeller);
-    expect(component.sellers[0]).toEqual(editedSeller);
+    expect(component.sellers[editedSeller.id - 1]).toEqual(editedSeller);
   });
 
 });

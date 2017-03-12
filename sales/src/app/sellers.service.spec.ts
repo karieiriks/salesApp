@@ -45,7 +45,7 @@ describe('SellersService', () => {
     });
   });
 
-  xit('should get all sellers from Api', () => {
+ /* xit('should get all sellers from Api', () => {
     let sellers = [{
       id: 1,
       name: 'Kári',
@@ -56,5 +56,5 @@ describe('SellersService', () => {
       category: 'Föt',
     }];
     expect(mockHttp.getSellers()).toEqual(sellers);
-  })
+  })*/
 });
