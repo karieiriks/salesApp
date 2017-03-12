@@ -39,14 +39,47 @@ describe('ProductDialogComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should save', () => {
+  it('should save the content in the modal', () => {
     component.activeModal = mockModal;
+    component.isTesting = true;
     component.input = 'test';
     component.name = 'Buxur';
     component.price = 100;
     component.quantitySold = 100;
     component.quantityInStock = 100;
-    //component.onSave();
-    expect(component.validateProductInfo()).toEqual(true);
+    component.onSave();
+    expect(mockModal.close).toHaveBeenCalled;
+  });
+
+  it('should test bad input in modal', () => {
+    component.activeModal = mockModal;
+    component.name = '111###';
+    component.onSave();
+    expect(mockModal.close).not.toHaveBeenCalled;
+  });
+
+  it('should test bad name in modal', () => {
+    component.activeModal = mockModal;
+    component.name = '1111';
+    component.onSave();
+    expect(mockModal.close).not.toHaveBeenCalled;
+  });
+
+  it('should cancel the modal', () => {
+    component.activeModal = mockModal;
+    component.isTesting = true;
+    component.input = 'test';
+    component.name = 'Buxur';
+    component.price = 100;
+    component.quantitySold = 100;
+    component.quantityInStock = 100;
+    component.onEdit();
+    expect(mockModal.close).toHaveBeenCalled;
+  });
+
+  it('should cancel the modal', () => {
+    component.activeModal = mockModal;
+    component.onCancel();
+    expect(mockModal.dismiss).toHaveBeenCalled;
   });
 });

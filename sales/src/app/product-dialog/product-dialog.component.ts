@@ -30,6 +30,7 @@ export class ProductDialogComponent implements OnInit {
   quantitySoldError: string;
   quantityStockError: string;
   input: string;
+  isTesting = false;
 
   constructor(public activeModal: NgbActiveModal) {
                }
@@ -81,9 +82,9 @@ export class ProductDialogComponent implements OnInit {
     this.quantityInStockIsInvalid = false;
     this.quantitySoldIsInvalid = false;
     let res = true;
-
-    this.input = (<HTMLInputElement>document.getElementById('nameField')).value;
-
+    if (this.isTesting !== true) {
+      this.input = (<HTMLInputElement>document.getElementById('nameField')).value;
+    }
     if(this.input === '') {
       this.invalidName = true;
       this.nameError = 'Vinsamlegast sláðu inn nafn...';
