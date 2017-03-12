@@ -31,11 +31,7 @@ export class ProductDialogComponent implements OnInit {
   quantityStockError: string;
 
   constructor(public activeModal: NgbActiveModal,
-              private sellerService: SellersService,
-              public toastr: ToastsManager,
-              public vcr: ViewContainerRef) {
-                this.toastr.setRootViewContainerRef(vcr);
-               }
+              private sellerService: SellersService) {}
 
   ngOnInit() {
   }
@@ -52,11 +48,8 @@ export class ProductDialogComponent implements OnInit {
     console.log('Seller obj :', productObj);
     console.log('sellerID :', this.sellerID);
     
-    if(this.validateProductInfo()) {
-      //this.sellerService.postProduct(productObj, this.sellerID);      
+    if(this.validateProductInfo()) {      
       this.activeModal.close(productObj);
-    } else {
-      this.toastr.error('Failure', 'Product info invalid');
     }
   }
   
@@ -92,37 +85,37 @@ export class ProductDialogComponent implements OnInit {
 
     if(input == "") {
       this.invalidName = true;
-      this.nameError = "Please enter a name...";
+      this.nameError = 'Vinsamlegast sláðu inn nafn...';
       res = false;
     }
 
     if(this.isNumeric(this.name)) {
       this.invalidName = true;
-      this.nameError = "Name cannot be numbers only...";
+      this.nameError = 'Nafn verður að innihalda bókstafi...';
       res = false;
     }
 
     if(this.hasInvalidSymbols(this.name)) {
       this.invalidName = true;
-      this.nameError = "Invalid symbols detected...";
+      this.nameError = 'Fjarlægið ólögleg tákn...';
       res = false;
     }
 
     if(!this.isNumeric(this.price) || this.price < 0) {
       this.priceIsInvalid = true;
-      this.priceError = "Price must be positive numbers only...";
+      this.priceError = 'Verð verður að vera jákvæð tala...';
       res = false;
     }
 
     if(!this.isNumeric(this.quantitySold) || this.quantitySold < 0) {
       this.quantitySoldIsInvalid = true;
-      this.quantitySoldError = "Quantity Stock must be positive numbers only...";
+      this.quantitySoldError = 'Magn selt verður að vera jákvæð tala...';
       res = false;
     }
 
     if(!this.isNumeric(this.quantityInStock) || this.quantityInStock < 0) {
       this.quantityInStockIsInvalid = true;
-      this.quantityStockError = "Quantity Stock must be positive numbers only...";
+      this.quantityStockError = 'Birgðamagn verður að vera jákvæð tala...';
       res = false;
     }
     return res;

@@ -6,36 +6,36 @@
 </div>
 
 <div class="modal-body">
-  <label for="name">Name</label><br>
+  <label for="name">Nafn</label><br>
   <input class="form-control" [(ngModel)]="name" id="nameField" required/>
   <div class="alert alert-danger" *ngIf="invalidName">{{nameError}}</div>
 </div>
 
 <div class="modal-body">
-  <label for="price">Price</label><br>
+  <label for="price">Verð</label><br>
   <input class="form-control" [(ngModel)]="price" required/>
   <div class="alert alert-danger" *ngIf="priceIsInvalid">{{priceError}}</div>
 </div>
 
 <div class="modal-body">
-  <label for="quantitySold">QuantitySold</label><br>
+  <label for="quantitySold">Magn Selt</label><br>
   <input class="form-control" [(ngModel)]="quantitySold"/>
   <div class="alert alert-danger" *ngIf="quantitySoldIsInvalid">{{quantitySoldError}}</div>
 </div>
 
 <div class="modal-body">
-  <label for="quantityInStock">QuantityInStock</label><br>
+  <label for="quantityInStock">Birgðamagn</label><br>
   <input class="form-control" [(ngModel)]="quantityInStock"/>
   <div class="alert alert-danger"*ngIf="quantityInStockIsInvalid">{{quantityStockError}}</div>
 </div>
 
 <div class="modal-body">
-  <label for="imagePath">Image path</label><br>
+  <label for="imagePath">Slóð á mynd</label><br>
   <input class="form-control" [(ngModel)]="imagePath"/>
 </div>
 
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel()">Cancel</button>
-  <button *ngIf="id === 0" type="button" class="btn btn-success btn-sm" (click)="onSave()" id="btnSave">Save</button>
-  <button *ngIf="id !== 0" type="button" class="btn btn-warning btn-sm" (click)="onEdit()">Edit</button>
+  <button type="button" class="btn btn-secondary btn-sm" (click)="onCancel()">Hætta við</button>
+  <button *ngIf="id === 0" type="button" class="btn btn-success btn-sm" (click)="onSave()" id="btnSave">Vista</button>
+  <button *ngIf="id !== 0" type="button" class="btn btn-warning btn-sm" (click)="onEdit()">Breyta vöru</button>
 </div>
