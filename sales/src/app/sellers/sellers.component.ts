@@ -18,7 +18,7 @@ export class SellersComponent implements OnInit {
               public toastr: ToastsManager,
               public vcr: ViewContainerRef) {
                 this.toastr.setRootViewContainerRef(vcr);
-              }
+  }
 
   ngOnInit() {
     this.getSellers();
