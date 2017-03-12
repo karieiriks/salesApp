@@ -31,10 +31,7 @@ export class ProductDialogComponent implements OnInit {
   quantityStockError: string;
 
   constructor(public activeModal: NgbActiveModal,
-              private sellerService: SellersService,
-              public toastr: ToastsManager,
-              public vcr: ViewContainerRef) {
-                this.toastr.setRootViewContainerRef(vcr);
+              private sellerService: SellersService) {
                }
 
   ngOnInit() {
@@ -55,8 +52,6 @@ export class ProductDialogComponent implements OnInit {
     if(this.validateProductInfo()) {
       //this.sellerService.postProduct(productObj, this.sellerID);      
       this.activeModal.close(productObj);
-    } else {
-      this.toastr.error('Failure', 'Product info invalid');
     }
   }
   

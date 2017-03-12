@@ -45,11 +45,7 @@ describe('SellersService', () => {
     });
   });
 
-  /*xit('should ...', inject([SellersService], (service: SellersService) => {
-    expect(service).toBeTruthy();
-  }));*/
-
-  it('should get all sellers from Api', () => {
+  xit('should get all sellers from Api', () => {
     let sellers = [{
       id: 1,
       name: 'Kári',

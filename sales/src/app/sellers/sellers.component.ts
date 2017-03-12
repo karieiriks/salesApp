@@ -46,11 +46,11 @@ export class SellersComponent implements OnInit {
       console.log('When pressed OK');
       console.log('Dialog object :', obj);
       this.toastr.success('Nýjum seljanda bætt við', 'Tókst!');
-    }).catch(err => {
+    });/*.catch(err => {
       console.log('When presses Cancel');
       console.log(err);
       this.toastr.info('Engum seljanda bætt við', 'Hætt við!')
-    });
+    });*/
   }
 
   editSeller(s: Seller) {

@@ -15,8 +15,10 @@ describe('SellersComponent', () => {
   let component: SellersComponent;
   let fixture: ComponentFixture<SellersComponent>;
 
-  class SellersServiceMock {
-    sellers = [{
+  let sellersServiceMock = {
+    addedSeller: true,
+    editedSeller: true,
+    sellers: [{
       id: 1,
       name: 'Kári',
       category: 'Matur',
@@ -24,41 +26,71 @@ describe('SellersComponent', () => {
       id: 2,
       name: 'Lúlli',
       category: 'Föt',
-    }];
-    dialogWorked: boolean;
+    }],
+
+    seller: {
+      name: 'Kári',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+    },
+
+
     getSellers(): Observable<Seller[]> {
       return Observable.of(this.sellers);
-    }
-    addSeller() {
-      return modalMock.open(SellerDialogComponent);
-    }
+    },
 
-    editSeller() {
-      return modalMock.open(SellerDialogComponent);
-    }
-  }
+    postSeller: function() {
+      return {
+        subscribe: function(fnSuccess, fnError) {
+          if (sellersServiceMock.addedSeller === true) {
+            fnSuccess(sellersServiceMock.seller);
+          } else {
+            fnError();
+          }
+        }
+      }
+    },
 
-  let modalMock = {
+    putSeller: function() {
+      return {
+        subscribe: function(fnSuccess, fnError) {
+          if (sellersServiceMock.editedSeller === true) {
+            fnSuccess(sellersServiceMock.seller);
+          } else {
+            fnError();
+          }
+        }
+      }
+    }
+  };
+
+  const modalMock = {
     success: true,
-    open(SellerDialogComponent) {
-      return true;
-    }
-    
-    /*: function() {
+    seller: {
+      name: 'Kári',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+    },
+    open: function() {
       return {
         result: {
           then: (fnSuccess, fnError) => {
-              if (fnSuccess) {
-                return true;
+              if (modalMock.success === true) {
+                fnSuccess(modalMock.seller);
+              } else {
+                fnError();
               }
-              return false;
-            }
           }
-        }
-      }*/
-    }
+        },
+        componentInstance: {
+          title: 'text',
+          model: {
 
-  const mockService = new SellersServiceMock();
+          }
+        },
+      }
+    }
+  }
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -66,7 +98,7 @@ describe('SellersComponent', () => {
         imports: [ FormsModule ],
         providers: [{
           provide: SellersService,
-          useValue: mockService
+          useValue: sellersServiceMock
         }, {
           provide: NgbModal,
           useValue: modalMock
@@ -84,7 +116,7 @@ describe('SellersComponent', () => {
     expect(component).toBeTruthy();
   });*/
 
-  it('should get all sellers', async(() => {
+  /*it('should get all sellers', async(() => {
     const seller = [{
       id: 1,
       name: 'Kári',
@@ -96,21 +128,22 @@ describe('SellersComponent', () => {
     }];
     mockService.getSellers();
     expect(mockService.sellers).toEqual(seller);
-  }));
+  }));*/
 
   it('should open a modalDialog on addSeller', () => {
-    const seller = {
-      id: 1,
+    sellersServiceMock.seller = {
       name: 'Kári',
       category: 'Matur',
+      imagePath: 'www.s.is'
     };
-    mockService.addSeller();
-    expect(modalMock.open(SellerDialogComponent)).toEqual(true);
+    component.sellers = [];
+    component.addSeller();
+    expect(component.sellers[0]).toEqual(sellersServiceMock.seller);
   });
 
-  it('should open a modalDialog on editSeller', () => {
+  xit('should open a modalDialog on editSeller', () => {
     mockService.editSeller();
-    expect(modalMock.open(SellerDialogComponent)).toEqual(true);
-  })
+    expect(modalMock.open()).toEqual(true);
+  });
 
 });

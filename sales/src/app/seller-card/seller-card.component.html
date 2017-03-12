@@ -28,7 +28,7 @@
 </ul>
 <div *ngIf="showProductsTab === true" class="tab-content">
   <div class="row">
-    <div id="tab-products" *ngFor="let p of products"  class="col-s-6 col-md-4 col-lg-2">
+    <div id="tab-products" *ngFor="let p of products"  class="col-xs-6 col-md-4 col-lg-2">
       <app-product-card [product]="p"
                         (productUpdated)="onEditProduct($event)">
 
