@@ -49,15 +49,15 @@ export class ProductDialogComponent implements OnInit {
       quantityInStock: this.quantityInStock,
       imagePath: this.imagePath
     };
-
     console.log('Seller obj :', productObj);
     console.log('sellerID :', this.sellerID);
     
     if(this.validateProductInfo()) {
-      this.sellerService.postProduct(productObj, this.sellerID);      
+      //this.sellerService.postProduct(productObj, this.sellerID);      
       this.activeModal.close(productObj);
+    } else {
+      this.toastr.error('Failure', 'Product info invalid');
     }
-    this.toastr.error('Failure', 'Product info invalid');
   }
   
   onEdit() {
@@ -72,13 +72,13 @@ export class ProductDialogComponent implements OnInit {
     };
     
     if(this.validateProductInfo()) {
-      this.sellerService.putProduct(productObj, this.sellerID);
-      this.activeModal.close();
+      //this.sellerService.putProduct(productObj, this.sellerID);
+      this.activeModal.close(productObj);
     }
   }
 
   onCancel() {
-    this.activeModal.dismiss();
+    this.activeModal.dismiss('Dismissed by user');
   }
 
   validateProductInfo() {

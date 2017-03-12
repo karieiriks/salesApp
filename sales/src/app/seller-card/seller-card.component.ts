@@ -35,11 +35,9 @@ export class SellerCardComponent implements OnInit {
 
     this.getSeller(this.sellerId);
 
-    this.sellerService.getSellersProduct(this.sellerId).subscribe(result => {
-      this.products = result;
-    });
+    this.getProducts();
     this.getTopTen();
-    console.log(this.topTenProducts);
+    console.log('Top ten : ', this.topTenProducts);
   }
 
   getSeller(id: number) {
@@ -57,31 +55,41 @@ export class SellerCardComponent implements OnInit {
     });
   }
 
+  getProducts() {
+      this.sellerService.getSellersProduct(this.sellerId).subscribe(result => {
+        this.products = result;
+        if(this.products.length == 0) {
+          this.toastr.info("Engar vörur hjá þessum seljanda");
+        }
+      });
+  }
+
   addProduct() {
     console.log('Add product');
     const modelInstance = this.modalService.open(ProductDialogComponent);
 
     modelInstance.componentInstance.title = 'Búa Til Nýja Vöru';
     modelInstance.componentInstance.sellerID = this.sellerId;
-    modelInstance.componentInstance.name = 'Ný vara';
-    modelInstance.componentInstance.price = 2000;
-    modelInstance.componentInstance.quantityInStock = 0;
-    modelInstance.componentInstance.quantitySold = 0;
-    modelInstance.componentInstance.imagePath = 'imgPath';
-
-    // TODO: We need to validate inputs
+    modelInstance.componentInstance.imagePath = 'http://www.logoworks.com/blog/wp-content/themes/fearless/images/missing-image-640x360.png';
 
     console.log('sellerID: ', this.sellerId);
 
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
-      this.products.push(obj);
-      this.toastr.success('Success!', 'Product added');
+      this.sellerService.postProduct(obj, this.sellerId).then(response => {
+        if (response['ok'] === true) {
+          this.getTopTen();
+          this.getProducts();
+          this.toastr.success('Success!', 'Product added');
+        }
+      });
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
-      this.toastr.info('Cancelled!', 'Product not added');
+      if (err === 'Dismissed by user') {
+        this.toastr.info('Cancelled!', 'Product not added');
+      }
     });
   }
 
@@ -104,12 +112,21 @@ export class SellerCardComponent implements OnInit {
     modelInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
+      this.sellerService.putProduct(obj, this.sellerId).then(response => {
+        console.log(response);
+        if (response['ok'] === true) {
+          this.getTopTen();
+          this.getProducts();
+          this.toastr.success("Vara uppfærð", "Jeij");
+        }
+      });
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
-      this.toastr.info('Cancelled!', 'Update cancelled');
+      this.toastr.info('Hætt við uppfærslu', 'Hætt við!');
     });
   }
+
   showProducts() {
     this.showProductsTab = true;
     this.showTopTenTab = false;
