@@ -50,7 +50,7 @@ describe('SellersComponent', () => {
             fnError();
           }
         }
-      }
+      };
     },
 
     putSeller: function() {
@@ -62,7 +62,7 @@ describe('SellersComponent', () => {
             fnError();
           }
         }
-      }
+      };
     }
   };
 
@@ -93,9 +93,9 @@ describe('SellersComponent', () => {
 
           }
         },
-      }
+      };
     }
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
