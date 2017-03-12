@@ -54,7 +54,7 @@ describe('SellersComponent', () => {
         then: (fn) => {
           fn();
         }
-      }
+      };
     },
 
     putSeller: function() {
@@ -69,7 +69,7 @@ describe('SellersComponent', () => {
         then: (fn) => {
           fn();
         }
-      }
+      };
     }
   };
 
@@ -100,9 +100,9 @@ describe('SellersComponent', () => {
 
           }
         },
-      }
+      };
     }
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
