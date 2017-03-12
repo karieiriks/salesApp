@@ -31,6 +31,7 @@ describe('SellersComponent', () => {
     }],
 
     add: {
+      id: 1,
       name: 'Kári',
       category: 'Matur',
       imagePath: 'www.s.is'
@@ -49,6 +50,9 @@ describe('SellersComponent', () => {
           } else {
             fnError();
           }
+        },
+        then: (fn) => {
+          fn();
         }
       }
     },
@@ -61,6 +65,9 @@ describe('SellersComponent', () => {
           } else {
             fnError();
           }
+        },
+        then: (fn) => {
+          fn();
         }
       }
     }
@@ -117,26 +124,9 @@ describe('SellersComponent', () => {
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
-    expect(component).toBeTruthy();
-  });*/
-
-  /*it('should get all sellers', async(() => {
-    const seller = [{
-      id: 1,
-      name: 'Kári',
-      category: 'Matur',
-    }, {
-      id: 2,
-      name: 'Lúlli',
-      category: 'Föt',
-    }];
-    mockService.getSellers();
-    expect(mockService.sellers).toEqual(seller);
-  }));*/
-
   it('should open a modalDialog on addSeller', () => {
     sellersServiceMock.add = {
+      id: 1,
       name: 'Kári',
       category: 'Matur',
       imagePath: 'www.s.is'

@@ -50,7 +50,7 @@ export class SellersService {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
     const obj = JSON.stringify(sellerInfo);
-    this.http.post('http://localhost:5000/api/sellers', obj, {headers: headers}).toPromise();
+    return this.http.post('http://localhost:5000/api/sellers', obj, {headers: headers}).toPromise();
   }
 
   putSeller(sellerUpdatedInfo: any) {

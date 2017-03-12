@@ -38,8 +38,9 @@ export class SellersComponent implements OnInit {
     modalInstance.componentInstance.model.id = 0;
     modalInstance.result.then(obj => {
       console.log(this.sellers);
-      this.sellers.push(obj);
-      this.service.postSeller(obj);
+      this.service.postSeller(obj).then(() => {
+        this.getSellers();
+      });
       console.log('When pressed OK');
       console.log('Dialog object :', obj);
 
@@ -64,17 +65,14 @@ export class SellersComponent implements OnInit {
     modalInstance.result.then(obj => {
       console.log('When pressed OK');
       console.log(obj);
-      this.service.putSeller(obj);
-      this.replaceEditedSeller(obj);
+      this.service.putSeller(obj).then( () => {
+        this.getSellers();
+      });
       this.toastr.success('Seljandi uppfærður', 'Tókst!');
     });/*.catch(err => {
       console.log('When presses Cancel');
       console.log(err);
       this.toastr.info('Hætt við!', '');
     });*/
-  }
-
-  replaceEditedSeller(updatedSeller: Object) {
-    this.sellers[updatedSeller['id'] - 1] = <Seller> updatedSeller;
   }
 }

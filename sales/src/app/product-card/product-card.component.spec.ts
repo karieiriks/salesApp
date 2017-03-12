@@ -1,7 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, EventEmitter } from '@angular/core';
 
 import { ProductCardComponent } from './product-card.component';
 
@@ -16,13 +16,28 @@ describe('ProductCardComponent', () => {
     .compileComponents();
   }));
 
+  const mockEmitter = {
+    emit: jasmine.createSpy('emit')
+  };
+
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      providers:[{
+        provide: EventEmitter,
+        useValue: mockEmitter
+      }]
+    });
     fixture = TestBed.createComponent(ProductCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
-  /*it('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
-  });*/
+  });
+
+  it('should emit changes', () => {
+    component.onEditProduct();
+    expect(mockEmitter.emit).toHaveBeenCalled;
+  })
 });
