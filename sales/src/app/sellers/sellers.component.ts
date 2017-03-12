@@ -45,11 +45,11 @@ export class SellersComponent implements OnInit {
       }
       console.log('When pressed OK');
       console.log('Dialog object :', obj);
-      this.toastr.success('Nýjum seljanda bætt við', 'Tókst!');
+      this.toastr.success('Nýjum seljanda bætt við');
     }).catch(err => {
       console.log('When presses Cancel');
       console.log(err);
-      this.toastr.info('Engum seljanda bætt við', 'Hætt við!')
+      this.toastr.info('Hætt við!')
     });
   }
 
@@ -68,11 +68,11 @@ export class SellersComponent implements OnInit {
       console.log(obj);
       this.service.putSeller(obj);
       this.replaceEditedSeller(obj);
-      this.toastr.success('Success!', 'Seller updated');
+      this.toastr.success('Seljandi uppfærður', 'Tókst!');
     }).catch(err => {
       console.log('When presses Cancel');
       console.log(err);
-      this.toastr.info('Cancelled!', 'Update cancelled');
+      this.toastr.info('Hætt við!', '');
     });
   }
 
