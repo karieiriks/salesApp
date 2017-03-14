@@ -12,7 +12,7 @@ describe('SellerDialogComponent', () => {
   let component: SellerDialogComponent;
   let fixture: ComponentFixture<SellerDialogComponent>;
 
-  let serviceMock = {
+  const serviceMock = {
     nextId: 0
   };
 
