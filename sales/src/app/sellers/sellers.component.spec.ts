@@ -95,9 +95,6 @@ describe('SellersComponent', () => {
                 }
               };
           },
-          catch: (err) => {
-            return 'Error';
-          }
         },
         componentInstance: {
           title: 'text',
