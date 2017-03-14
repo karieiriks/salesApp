@@ -53,6 +53,8 @@ export class ProductDialogComponent implements OnInit {
 
     if (this.validateProductInfo()) {
       this.activeModal.close(productObj);
+    } else {
+      console.log('input not correct');
     }
   }
 
@@ -67,8 +69,10 @@ export class ProductDialogComponent implements OnInit {
       imagePath: this.imagePath
     };
 
-    if(this.validateProductInfo()) {
+    if (this.validateProductInfo()) {
       this.activeModal.close(productObj);
+    } else {
+      console.log('input not correct');
     }
   }
 

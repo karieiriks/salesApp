@@ -257,12 +257,14 @@ describe('SellerCardComponent', () => {
   });
 
   it('should switch tab to see top ten products', () => {
+    component.showTopTen();
     component.topTenProducts = [];
     component.showTopTen();
     expect(component.showTopTenTab).toEqual(true);
   });
 
   it('should switch tab to see products', () => {
+    component.showProducts();
     component.products = [];
     component.showProducts();
     expect(component.showProductsTab).toEqual(true);

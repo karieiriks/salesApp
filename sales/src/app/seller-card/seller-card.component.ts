@@ -87,9 +87,7 @@ export class SellerCardComponent implements OnInit {
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
-      if (err === 'Dismissed by user') {
-        this.toastr.info('Hætt við!', 'Engri vöru bætt við');
-      }
+      this.toastr.info('Hætt við!', 'Engri vöru bætt við');
     });
   }
 
@@ -126,16 +124,20 @@ export class SellerCardComponent implements OnInit {
   showProducts() {
     this.showProductsTab = true;
     this.showTopTenTab = false;
-    if(this.products.length === 0) {
+    if (this.products.length === 0) {
       this.toastr.info('Engar vörur hjá þessum seljanda');
+    } else {
+      console.log('there are some products here');
     }
   }
 
   showTopTen() {
     this.showProductsTab = false;
     this.showTopTenTab = true;
-    if(this.topTenProducts.length === 0) {
+    if (this.topTenProducts.length === 0) {
       this.toastr.info('Engar vörur hjá þessum seljanda');
+    } else {
+      console.log('there are some products here');
     }
   }
 }

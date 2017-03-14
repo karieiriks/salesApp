@@ -61,7 +61,7 @@ describe('ProductDialogComponent', () => {
   it('should test bad name in modal', () => {
     component.activeModal = mockModal;
     component.name = '1111';
-    component.onSave();
+    component.onEdit();
     expect(mockModal.close).not.toHaveBeenCalled;
   });
 
