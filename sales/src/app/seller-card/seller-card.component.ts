@@ -126,8 +126,6 @@ export class SellerCardComponent implements OnInit {
     this.showTopTenTab = false;
     if (this.products.length === 0) {
       this.toastr.info('Engar vörur hjá þessum seljanda');
-    } else {
-      console.log('there are some products here');
     }
   }
 
@@ -136,8 +134,6 @@ export class SellerCardComponent implements OnInit {
     this.showTopTenTab = true;
     if (this.topTenProducts.length === 0) {
       this.toastr.info('Engar vörur hjá þessum seljanda');
-    } else {
-      console.log('there are some products here');
     }
   }
 }

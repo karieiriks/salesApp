@@ -53,8 +53,6 @@ export class ProductDialogComponent implements OnInit {
 
     if (this.validateProductInfo()) {
       this.activeModal.close(productObj);
-    } else {
-      console.log('input not correct');
     }
   }
 
@@ -71,8 +69,6 @@ export class ProductDialogComponent implements OnInit {
 
     if (this.validateProductInfo()) {
       this.activeModal.close(productObj);
-    } else {
-      console.log('input not correct');
     }
   }
 
