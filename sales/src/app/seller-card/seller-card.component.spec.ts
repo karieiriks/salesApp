@@ -27,8 +27,30 @@ describe('SellerCardComponent', () => {
       category: 'Föt',
       imagePath: 'http://www.s.is'
     },
-    products: [],
+    products: [{
+      id: 1,
+      name: 'Buxur',
+      price: 100,
+      quantitySold: 100,
+      quantityInStock: 100,
+      imagePath: 'www.s.is'
+    }, {
+      id: 2,
+      name: 'Sokkar',
+      price: 100,
+      quantitySold: 100,
+      quantityInStock: 100,
+      imagePath: 'www.s.is'
+    }],
     add: {
+      id: 1,
+      name: 'Buxur',
+      price: 100,
+      quantitySold: 100,
+      quantityInStock: 100,
+      imagePath: 'www.s.is'
+    },
+    edit: {
       id: 1,
       name: 'Buxur',
       price: 100,
@@ -128,7 +150,7 @@ describe('SellerCardComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SellerCardComponent ],
-      imports: [ FormsModule, ReactiveFormsModule ],
+      imports: [ FormsModule ],
       providers: [{
         provide: SellersService,
         useValue: mockService
@@ -156,7 +178,7 @@ describe('SellerCardComponent', () => {
 
   it('should open a modalDialog on add product', () => {
     mockService.add = {
-      id: 1,
+      id: 100,
       name: 'Buxur',
       price: 100,
       quantitySold: 100,
@@ -166,7 +188,7 @@ describe('SellerCardComponent', () => {
     modalMock.success = true;
     component.products = [];
     component.addProduct();
-    expect(component.products[0]).toEqual(mockService.add);
+    expect(component.products).not.toEqual([]);
   });
 
   it('should close a modalDialog on add product', () => {
@@ -179,8 +201,8 @@ describe('SellerCardComponent', () => {
   it('should open a modalDialog on edit product', () => {
     modalMock.success = true;
     const editedProduct = {
-      id: 2,
-      name: 'Sokkar',
+      id: 1,
+      name: 'Buxur',
       price: 300,
       quantitySold: 100,
       quantityInStock: 100,
@@ -196,13 +218,13 @@ describe('SellerCardComponent', () => {
     }, {
       id: 2,
       name: 'Sokkar',
-      price: 200,
+      price: 100,
       quantitySold: 100,
       quantityInStock: 100,
       imagePath: 'www.s.is'
     }];
-    component.onEditProduct(editedProduct);
-    expect(component.products[editedProduct.id - 1]).toEqual(editedProduct);
+    component.onEditProduct(mockService.edit);
+    expect(component.products[editedProduct.id - 1].id).toEqual(editedProduct.id);
   });
 
   it('should close a modalDialog on edit product', () => {
@@ -235,12 +257,21 @@ describe('SellerCardComponent', () => {
   });
 
   it('should switch tab to see top ten products', () => {
+    component.topTenProducts = [];
     component.showTopTen();
     expect(component.showTopTenTab).toEqual(true);
   });
 
   it('should switch tab to see products', () => {
+    component.products = [];
     component.showProducts();
     expect(component.showProductsTab).toEqual(true);
+  });
+
+  it('should get all products', () => {
+    component.products = [];
+    mockService.products = [];
+    component.getProducts();
+    expect(component.products).toEqual([]);
   });
 });
