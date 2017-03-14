@@ -49,8 +49,10 @@ export class SellerCardComponent implements OnInit {
   }
 
   getTopTen() {
-    this.sellerService.getTopTenProducts(this.sellerId).subscribe( result => {
-      this.topTenProducts = result.slice(0, 10);
+    this.sellerService.getSellersProduct(this.sellerId).subscribe( result => {
+      this.topTenProducts = result.sort((a, b) => {
+        return ((b.price * b.quantitySold) - (a.price * a.quantitySold));
+      }).slice(0, 10);
       console.log(this.topTenProducts);
     });
   }
@@ -78,18 +80,14 @@ export class SellerCardComponent implements OnInit {
       console.log('When pressed OK');
       console.log(obj);
       this.sellerService.postProduct(obj, this.sellerId).then(response => {
-        if (response['ok'] === true) {
-          this.getTopTen();
-          this.getProducts();
-          this.toastr.success('Vöru bætt við');
-        }
+        this.getTopTen();
+        this.getProducts();
+        this.toastr.success('Vöru bætt við');
       });
     }).catch(err => {
       console.log('When pressed Cancel');
       console.log(err);
-      if (err === 'Dismissed by user') {
-        this.toastr.info('Hætt við!', 'Engri vöru bætt við');
-      }
+      this.toastr.info('Hætt við!', 'Engri vöru bætt við');
     });
   }
 
@@ -112,11 +110,9 @@ export class SellerCardComponent implements OnInit {
       console.log(obj);
       this.sellerService.putProduct(obj, this.sellerId).then(response => {
         console.log(response);
-        if (response['ok'] === true) {
-          this.getTopTen();
-          this.getProducts();
-          this.toastr.success('Vara uppfærð');
-        }
+        this.getTopTen();
+        this.getProducts();
+        this.toastr.success('Vara uppfærð');
       });
     }).catch(err => {
       console.log('When pressed Cancel');
@@ -128,7 +124,7 @@ export class SellerCardComponent implements OnInit {
   showProducts() {
     this.showProductsTab = true;
     this.showTopTenTab = false;
-    if(this.products.length === 0) {
+    if (this.products.length === 0) {
       this.toastr.info('Engar vörur hjá þessum seljanda');
     }
   }
@@ -136,7 +132,7 @@ export class SellerCardComponent implements OnInit {
   showTopTen() {
     this.showProductsTab = false;
     this.showTopTenTab = true;
-    if(this.topTenProducts.length === 0) {
+    if (this.topTenProducts.length === 0) {
       this.toastr.info('Engar vörur hjá þessum seljanda');
     }
   }

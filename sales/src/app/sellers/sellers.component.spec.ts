@@ -83,16 +83,18 @@ describe('SellersComponent', () => {
     open: function() {
       return {
         result: {
-          then: (fnSuccess, fnError) => {
+          then: (fnSuccess) => {
               if (modalMock.success === true) {
                 fnSuccess(modalMock.seller);
-              } else {
-                fnError();
               }
+              return {
+                catch: (fnError) => {
+                  if (!modalMock.success) {
+                    fnError();
+                  }
+                }
+              };
           },
-          catch: (err) => {
-            return 'Error';
-          }
         },
         componentInstance: {
           title: 'text',
@@ -136,7 +138,15 @@ describe('SellersComponent', () => {
     expect(component.sellers[0]).toEqual(sellersServiceMock.add);
   });
 
+  it('should open a modalDialog on addSeller', () => {
+    modalMock.success = false;
+    component.sellers = [];
+    component.addSeller();
+    expect(component.sellers).toEqual([]);
+  });
+
   it('should open a modalDialog on editSeller', () => {
+    modalMock.success = true;
     const editedSeller = {
       id: 2,
       name: 'Lúlli',
@@ -156,6 +166,40 @@ describe('SellersComponent', () => {
     }];
     component.editSeller(editedSeller);
     expect(component.sellers[editedSeller.id - 1]).toEqual(editedSeller);
+  });
+
+  it('should open a modalDialog on addSeller', () => {
+    modalMock.success = false;
+    const editedSeller = {
+      id: 2,
+      name: 'Lúlli',
+      category: 'Föt',
+      imagePath: 'www.s.is'
+    };
+    component.sellers = [{
+      id: 1,
+      name: 'Kári',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+      }, {
+      id: 2,
+      name: 'Lúlli',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+    }];
+    const sellersMock = [{
+      id: 1,
+      name: 'Kári',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+      }, {
+      id: 2,
+      name: 'Lúlli',
+      category: 'Matur',
+      imagePath: 'www.s.is'
+    }];
+    component.editSeller(editedSeller);
+    expect(component.sellers).toEqual(sellersMock);
   });
 
 });

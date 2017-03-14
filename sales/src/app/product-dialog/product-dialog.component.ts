@@ -67,7 +67,7 @@ export class ProductDialogComponent implements OnInit {
       imagePath: this.imagePath
     };
 
-    if(this.validateProductInfo()) {
+    if (this.validateProductInfo()) {
       this.activeModal.close(productObj);
     }
   }
