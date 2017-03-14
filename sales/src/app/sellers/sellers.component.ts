@@ -45,11 +45,11 @@ export class SellersComponent implements OnInit {
       console.log('Dialog object :', obj);
 
       this.toastr.success('Nýjum seljanda bætt við');
-    });/*.catch(err => {
+    }).catch(err => {
       console.log('When presses Cancel');
       console.log(err);
       this.toastr.info('Hætt við!');
-    });*/
+    });
   }
 
   editSeller(s: Seller) {
@@ -69,10 +69,10 @@ export class SellersComponent implements OnInit {
         this.getSellers();
       });
       this.toastr.success('Seljandi uppfærður', 'Tókst!');
-    });/*.catch(err => {
+    }).catch(err => {
       console.log('When presses Cancel');
       console.log(err);
       this.toastr.info('Hætt við!', '');
-    });*/
+    });
   }
 }

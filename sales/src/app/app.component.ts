@@ -9,7 +9,7 @@ import { SellerDialogComponent } from './seller-dialog/seller-dialog.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Sölusíðan sveittir bændur';
+  title = 'Seljum allt';
 
   constructor() {}
 

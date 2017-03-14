@@ -1,68 +1,177 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject, ComponentFixture } from '@angular/core/testing';
 import { SellersService } from './sellers.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Http, Headers } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
 import { Observable} from 'rxjs/Observable';
 import { Seller, Product } from './sellers.service';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { Injectable } from '@angular/core';
+import { TestBed, inject } from '@angular/core/testing';
+import { Http, BaseRequestOptions, ResponseOptions, Response } from '@angular/http';
+import { MockBackend, MockConnection } from '@angular/http/testing';
+import 'rxjs/rx';
 
 
 describe('SellersService', () => {
-  let service: SellersService;
-/*
-  const mockHttp = {
-    get: jasmine.createSpy('get'),
-    put: jasmine.createSpy('get'),
-    post: jasmine.createSpy('get')
-  };
-
   let subject: SellersService = null;
   let backend: MockBackend = null;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ SellersService ],
-       imports: [ HttpModule, FormsModule, ReactiveFormsModule ],
-      providers: [{
-        provide: SellersService,
-        useValue: subject
-      }, {
+      providers: ([
+      MockBackend,
+      BaseRequestOptions,
+      {
         provide: Http,
-        useValue: mockHttp
-      }, {
-        provide: MockBackend,
-        useValue: backend
-      } ]})
-      .compileComponents();
+        useFactory: (backendInstance: MockBackend, defaultOptions: BaseRequestOptions) => {
+          return new Http(backendInstance, defaultOptions);
+        },
+        deps: [MockBackend, BaseRequestOptions]
+      },
+      SellersService])
+    }).compileComponents();
   });
 
-
-
-  beforeEach(inject([SellersService, MockBackend], (userService: SellersService, mockBackend: MockBackend) => {
-    subject = userService;
+  beforeEach(inject([SellersService, MockBackend], (sellersService: SellersService, mockBackend: MockBackend) => {
+    subject = sellersService;
     backend = mockBackend;
-  }));*/
+  }));
 
- /* xit('should get all sellers from Api', () => {
-    let sellers = [{
-      id: 1,
-      name: 'Kári',
-      category: 'Matur',
-    }, {
-      id: 2,
-      name: 'Lúlli',
-      category: 'Föt',
-    }];
-    expect(mockHttp.getSellers()).toEqual(sellers);
-  })*/
+  it('calling getSellers', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
 
-
-
-  it('should call get in getSellers', () => {
-    expect(service).toBeTruthy;
+    subject
+      .getSellers().subscribe(response =>{
+        expect(response['success']).toEqual(true);
+      });
   });
+
+  it('calling getSellerById', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
+
+    subject
+      .getSellerById(1).subscribe(response =>{
+        expect(response['success']).toEqual(true);
+      });
+  });
+
+  it('calling postSeller', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
+    const obj = {
+      name: 'Kári',
+      category: 'Föt',
+      imagePath: 'http://www.s.is'
+    };
+
+    subject
+      .postSeller(obj).then(response => {
+        expect(response.json()).toEqual({ success: true });
+      });
+  });
+
+  it('calling putSeller', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
+    const obj = {
+      name: 'Kári',
+      category: 'Föt',
+      imagePath: 'http://www.s.is'
+    };
+
+    subject
+      .putSeller(obj).then(response => {
+        expect(response.json()).toEqual({ success: true });
+      });
+  });
+
+  it('calling postProduct', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
+    const obj = {
+      name: 'Buxur',
+      price: '100',
+      quantitySold: '100',
+      quantityInStock: '100',
+      imagePath: 'http://www.s.is'
+    };
+
+    subject
+      .postProduct(obj, 1).then(response => {
+        expect(response.json()).toEqual({ success: true });
+      });
+  });
+
+  it('calling getSellersProduct', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
+
+    subject
+      .getSellersProduct(1).subscribe(response => {
+        expect(response['success']).toEqual(true);
+      });
+  });
+
+  it('calling putProduct', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
+    const obj = {
+      id: 1,
+      name: 'Buxur',
+      price: '100',
+      quantitySold: '100',
+      quantityInStock: '100',
+      imagePath: 'http://www.s.is'
+    };
+
+    subject
+      .putProduct(obj, 1).then(response => {
+        expect(response.json()).toEqual({ success: true });
+      });
+  });
+
+ /* it('calling getSellersProduct', () => {
+    backend.connections.subscribe((connection: MockConnection) => {
+      const options = new ResponseOptions({
+        body: JSON.stringify({ success: true })
+      });
+      connection.mockRespond(new Response(options));
+    });
+
+    subject
+      .getTopTenProducts(1).subscribe(response => {
+        expect(response['success']).toEqual(true);
+      });
+  });*/
 });

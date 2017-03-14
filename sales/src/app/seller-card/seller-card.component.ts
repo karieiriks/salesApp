@@ -49,8 +49,10 @@ export class SellerCardComponent implements OnInit {
   }
 
   getTopTen() {
-    this.sellerService.getTopTenProducts(this.sellerId).subscribe( result => {
-      this.topTenProducts = result.slice(0, 10);
+    this.sellerService.getSellersProduct(this.sellerId).subscribe( result => {
+      this.topTenProducts = result.sort((a, b) => {
+        return ((b.price * b.quantitySold) - (a.price * a.quantitySold));
+      }).slice(0, 10);
       console.log(this.topTenProducts);
     });
   }
@@ -78,11 +80,9 @@ export class SellerCardComponent implements OnInit {
       console.log('When pressed OK');
       console.log(obj);
       this.sellerService.postProduct(obj, this.sellerId).then(response => {
-        if (response['ok'] === true) {
-          this.getTopTen();
-          this.getProducts();
-          this.toastr.success('Vöru bætt við');
-        }
+        this.getTopTen();
+        this.getProducts();
+        this.toastr.success('Vöru bætt við');
       });
     }).catch(err => {
       console.log('When pressed Cancel');
@@ -112,11 +112,9 @@ export class SellerCardComponent implements OnInit {
       console.log(obj);
       this.sellerService.putProduct(obj, this.sellerId).then(response => {
         console.log(response);
-        if (response['ok'] === true) {
-          this.getTopTen();
-          this.getProducts();
-          this.toastr.success('Vara uppfærð');
-        }
+        this.getTopTen();
+        this.getProducts();
+        this.toastr.success('Vara uppfærð');
       });
     }).catch(err => {
       console.log('When pressed Cancel');
